@@ -11,9 +11,10 @@ body {
 	font-family: 'Pt Sans Narrow', sans-serif;
 	font-weight: 400;
 	height:100%;
+	background-color: #fff;
 }
 
-a {
+a, li {
 	text-decoration:none;
     background-color: none;
     -webkit-tap-highlight-color: rgba(0,0,0,0);	
