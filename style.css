@@ -1,0 +1,1616 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+
+body, html {
+	padding:0;
+	margin:0;
+	overflow: hidden;
+}
+
+body {
+	background:#000;	
+	font-family: 'Pt Sans Narrow', sans-serif;
+	font-weight: 400;
+	height:100%;
+}
+
+a {
+	text-decoration:none;	
+}
+
+.clear {
+	clear:both;
+}
+
+/*************************************** MENU ********************************/
+
+#menu {
+	position:fixed;
+	z-index:100;
+	left:0;
+	width:250px;
+	height:100%;
+	background:#FFF;	
+	text-align:center;
+}
+
+#rub {
+	height:450px;
+	position:absolute;
+	width:250px;
+	top:45%;
+	margin-top:-225px;
+}
+
+.seprub {
+	height:1px;
+	width:20px;
+	background:#ddd;
+	margin:40px auto;
+}
+
+.logo {
+	display:block;
+	position:relative;
+	width:155px;
+	margin:0px auto 45px auto;
+	cursor:pointer;	
+}
+
+ul, li {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+#menu ul li {
+	position:relative;
+	font-size:15px;
+	line-height:15px;
+	letter-spacing:3px;
+	color:#757575;
+	text-transform:uppercase;
+	margin-bottom:30px;
+	-webkit-font-smoothing:antialiased;
+	-webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+	cursor:pointer;
+}
+
+#menu ul li:hover, #menu ul li.current, #menu ul li:hover a, #menu ul li.blog:hover, #menu ul li.blog:hover a {
+	color:#0fe9bd;
+	-webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+}
+
+#menu ul li a {
+	color:#757575;
+	-webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+}
+
+
+#menu ul li.blog {
+	color:#757575;
+	display:block;
+	overflow:hidden;
+	width:50px;
+	margin:0px auto;
+	-webkit-font-smoothing:antialiased;
+	-webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
+	cursor:pointer;
+}
+
+
+#menu .fleche {
+	position:absolute;
+	opacity:0;
+	left:230px;
+	top:293px;
+	width:9px;
+	height:16px;
+	background:url(http://paulineosmont.com/portfolio/design/fleche.png) no-repeat;	
+	-webkit-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
+    -moz-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
+    -o-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
+    -ms-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
+    transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
+}
+
+#menu .fleche.visible {
+	opacity:1;
+	left:250px;
+}
+
+.reseau {
+	position:absolute;
+	bottom:30px;
+	padding:0;
+	height:13px;
+	overflow:hidden;
+	cursor:pointer;
+	background:url(http://paulineosmont.com/portfolio/design/fondreseau.jpg) no-repeat;
+	-webkit-transition: background-position 0.2s ease-out;
+    -moz-transition: background-position 0.2s ease-out;
+    -o-transition: background-position 0.2s ease-out;
+    -ms-transition: background-position 0.2s ease-out;
+    transition: background-position 0.2s ease-out;	
+}
+
+.reseau img {
+	position:absolute;
+	left:0;	
+	border:0;
+}
+
+.twitter {
+	left:50px;
+	width:16px;
+	background-position: -25px 0px;
+}
+
+.twitter:hover {
+	background-position: -9px 0px;
+}
+
+.facebook {
+	left:86px;
+	width:6px;
+	height:12px;
+	background-position: -25px 0px;
+}
+
+.facebook:hover {
+	background-position: -19px 0px;
+}
+
+.linkedin {
+	left:112px;
+	width:13px;
+	background-position: -25px 0px;
+}
+
+.linkedin:hover {
+	background-position: -12px 0px;
+}
+
+.pinterest {
+	left:145px;
+	width:10px;
+	background-position: -25px 0px;
+}
+
+.pinterest:hover {
+	background-position: -15px 0px;
+}
+
+.deviantart {
+	left:175px;
+	width:24px;
+	background-position: -25px 0px;
+}
+
+.deviantart:hover {
+	background-position: -1px 0px;
+}
+
+#social {
+	position:fixed;
+	z-index:1;
+	bottom:0;
+	left:0;
+	width:600px;
+	height:150px;
+}
+
+#sousmenu {
+	position:fixed;
+	z-index:99;
+	left:70px;
+	width:180px;
+	height:100%;
+	background:url(http://paulineosmont.com/portfolio/design/ombresousmenu.png) repeat-y;
+	background-color:#0fe9bd;
+	-webkit-transition: left 0.7s ease-out;
+    -moz-transition: left 0.7s ease-out;
+    -o-transition: left 0.7s ease-out;
+    -ms-transition: left 0.7s ease-out;
+    transition: left 0.7s ease-out;
+}
+
+#sousmenu.visible {
+	left:250px;
+}
+
+#sousmenu ul {
+	position:absolute;
+	top:50%;
+	margin-top:-125px;
+	width:180px;
+	height:250px;
+}
+
+#sousmenu ul li {
+	width:180px;
+	margin-bottom:30px;
+	text-transform:uppercase;
+	text-align:center;
+	letter-spacing:3px;
+	font-size:16px;
+	line-height:16px;
+	color:#aaffee;
+	-webkit-font-smoothing:antialiased;
+	-webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    -o-transition: all 0.15s ease-out;
+    -ms-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+	cursor:pointer;
+}
+
+#sousmenu ul li:hover, #sousmenu ul li.current {
+	color:#fff;
+}
+
+
+
+/*************************** HOME ****************************/
+
+#content {
+	position:fixed;
+	z-index:10;
+	display:block;	
+	top:0;
+	overflow:hidden;
+	left:250px;
+	width:100%;
+	height:100%;
+	background:url(http://paulineosmont.com/portfolio/design/home.jpg);
+	background-size:cover;
+	background-position:center center;
+	-webkit-transition: top 0.7s ease-out, left 0.7s ease-out, width 0s 0s;
+    -moz-transition: top 0.7s ease-out, left 0.7s ease-out, width 0s 0s;
+    -o-transition: top 0.7s ease-out, left 0.7s ease-out, width 0s 0s;
+    -ms-transition: top 0.7s ease-out, left 0.7s ease-out, width 0s 0s;
+    transition: top 0.7s ease-out, left 0.7s ease-out, width 0s 0s;
+}
+
+#content.etat1 {
+	top:-100%;
+}
+
+#content.etat2 {
+	top:-200%;
+}
+
+#content.etatcontact {
+	-webkit-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    -moz-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    -o-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    -ms-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+}
+
+#content.etatabout {
+	-webkit-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    -moz-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    -o-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    -ms-transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+    transition: top 0s ease-out, left 0.7s ease-out, width 0s 0s;
+}
+
+
+#lettres {
+	position:absolute;
+	z-index:11;
+	left:50%;
+	top:50%;
+	margin-top:-280px;
+	margin-left:-210px;
+	-webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    -moz-transition: -moz-transform 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    -o-transition: -o-transform 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    -ms-transition: -ms-transform 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    transition: transform 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+	-webkit-transition-delay: 0s, 0.4s, 0.4s;
+	-moz-transition-delay: 0s, 0.4s, 0.4s;
+	-o-transition-delay: 0s, 0.4s, 0.4s;
+	-ms-transition-delay: 0s, 0.4s, 0.4s;
+	transition-delay: 0s, 0.4s, 0.4s;
+}
+
+#lettres:hover {
+	transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-webkit-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+}
+
+#btn_workgrid {
+	position:absolute;
+	z-index:11;
+	left:50%;
+	top:50%;
+	width:160px;
+	margin-top:240px;
+	margin-left:-100px;
+	padding:18px;
+	border:1px solid #868686;
+	font-size:18px;
+	line-height:18px;
+	letter-spacing:5px;
+	text-transform:uppercase;
+	text-align:center;
+	color:#757575;
+	-webkit-transition: border 0.3s ease-out, color 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    -moz-transition: border 0.3s ease-out, color 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    -o-transition: border 0.3s ease-out, color 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    -ms-transition: border 0.3s ease-out, color 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+    transition: border 0.3s ease-out, color 0.3s ease-out, opacity 0.7s ease-in, top 0.7s ease-in;
+	-webkit-transition-delay: 0s,0s, 0.4s, 0.4s;
+	-moz-transition-delay: 0s,0s, 0.4s, 0.4s;
+	-o-transition-delay: 0s,0s, 0.4s, 0.4s;
+	-ms-transition-delay: 0s,0s, 0.4s, 0.4s;
+	transition-delay: 0s,0s, 0.4s, 0.4s;
+	cursor:pointer;
+}
+
+#btn_workgrid:hover {
+	border:1px solid #0fe9bd;
+	color:#FFF;
+}
+
+#content.depart, #btn_workgrid.depart, #lettres.depart {
+	-webkit-transition: 0s;
+    -moz-transition: 0s;
+    -o-transition: 0s;
+    -ms-transition: 0s;
+    transition: 0s;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+
+/*************************************** CONTACT ********************************/
+
+
+#contact {
+	position:fixed;
+	z-index:20;
+	display:block;	
+	top:0;
+	left:-100%;
+	width:100%;
+	height:100%;
+	background:#0fe9bd;
+	-webkit-transition: left 0s ease-out;
+    -moz-transition: left 0s ease-out;
+    -o-transition: left 0s ease-out;
+    -ms-transition: left 0s ease-out;
+    transition: left 0s ease-out;
+	overflow:hidden;
+}
+
+#contact.etatcontact {
+	left:250px;
+	overflow:visible;
+}
+
+#contact.visible {
+	-webkit-transition: left 0.7s ease-out;
+    -moz-transition: left 0.7s ease-out;
+    -o-transition: left 0.7s ease-out;
+    -ms-transition: left 0.7s ease-out;
+    transition: left 0.7s ease-out;
+}
+
+#contact_content {
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-465px;
+	margin-top:-285px;
+	width:930px;
+	height:570px;	
+}
+
+#contact h2 {
+	position:relative;
+	font-size:22px;
+	line-height:22px;
+	font-weight:normal;
+	text-transform:uppercase;
+	color:#FFF;
+	letter-spacing:5px;
+	margin:0 0 22px 0px;
+}
+
+.contactme {
+	position:relative;
+	font-size:18px;
+	line-height:22px;
+	font-weight:normal;
+	letter-spacing:4px;
+	text-transform:uppercase;
+	color:#FFF;
+	margin:0 0 80px 0px;
+}
+
+#contactleft {
+	float:left;
+	width:300px;
+}
+
+#contactright {
+	float:left;
+	width:600px;
+	margin-left:30px;
+}
+
+input, textarea {
+	border:1px solid #8affe7;
+	padding:20px;
+	font-size:12px;
+	line-height:12px;
+	font-weight:normal;
+	letter-spacing:3px;
+	text-transform:uppercase;
+	color:#FFF;
+	background:#0fe9bd;
+	-webkit-transition: border 0.2s ease-out;
+    -moz-transition: border 0.2s ease-out;
+    -o-transition: border 0.2s ease-out;
+    -ms-transition: border 0.2s ease-out;
+    transition: border 0.2s ease-out;
+}
+
+input:hover, textarea:hover, input:focus, textarea:focus, input:active, textarea:active  {
+	border:1px solid #fff;
+}
+
+input {
+	width:260px;
+	height:12px;
+	margin-bottom:30px;
+}
+
+textarea {
+	width:560px;
+	height:264px;
+}
+
+input.envoyer {
+	float:right;
+	width:150px;
+	height:50px;
+	margin-top:50px;
+	border:none;
+	background:url(http://paulineosmont.com/portfolio/design/fondbouton.jpg) repeat-y center right;
+	color:#FFF;
+	text-align:center;
+	font-size:12px;
+	line-height:12px;
+	font-weight:bold;
+	letter-spacing:3px;
+	text-transform:uppercase;
+	cursor:pointer;
+	-webkit-transition: background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    -moz-transition: background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    -o-transition: background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    -ms-transition: background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    transition: background 0.2s ease-out, color 0.2s 0.1s ease-out;
+}
+
+input.envoyer:hover {
+	background:url(http://paulineosmont.com/portfolio/design/fondbouton.jpg) repeat-y center left;
+	color:#0fe9bd;
+}
+
+
+#copyrights {
+	position:absolute;
+	bottom:30px;
+	margin-left:80px;
+	font-size:10px;
+	line-height:10px;
+	letter-spacing:3px;
+	text-transform:uppercase;
+	color:#8affe7;
+}
+
+p.envoimess {
+	margin-top: -63px;
+	margin-left: -330px;
+	width: 400px;	
+}
+
+
+@media screen and (max-width: 1340px) { 
+	#contact_content {
+		margin-left:-315px;
+		margin-top:-250px;
+		width:630px;
+		height:500px;	
+	}
+	
+	#contact h2 {
+		margin:0 0 22px 0;
+	}
+	
+	.contactme {
+		margin:0 0 40px 0;
+	}
+	
+	#contactright {
+		width:300px;
+		margin-left:30px;
+	}
+	
+	input {
+		width:260px;
+		height:12px;
+		margin-bottom:30px;
+	}
+	
+	textarea {
+		width:260px;
+		height:264px;
+	}
+
+	input.envoyer {
+		margin-top:30px;
+	}
+	
+	#copyrights {
+		margin-left:40px;
+	}
+
+}
+
+
+/*************************************** ABOUT ********************************/
+
+
+#about {
+	position:fixed;
+	z-index:20;
+	display:block;	
+	overflow:hidden;
+	top:0;
+	left:-100%;
+	width:0;
+	height:100%;
+	background:url(http://paulineosmont.com/portfolio/design/about.jpg);
+	background-size:cover;
+	background-position:top left;
+	-webkit-transition: left 0s ease-out, width 0s 0.7s ease-out;
+    -moz-transition: left 0s ease-out;
+    -o-transition: left 0s ease-out;
+    -ms-transition: left 0s ease-out;
+    transition: left 0s ease-out, width 0s 0.7s ease-out;
+}
+
+#about.etatabout {
+	left:250px;
+}
+
+#about.visible {
+	width:100%;
+	-webkit-transition: left 0.7s ease-out, width 0s ease-out;
+    -moz-transition: left 0.7s ease-out;
+    -o-transition: left 0.7s ease-out;
+    -ms-transition: left 0.7s ease-out;
+    transition: left 0.7s ease-out, width 0s ease-out;
+}
+
+#about_content {
+	position:absolute;
+	z-index:21;
+	display:block;
+	left:50%;
+	top:50%;
+	margin-left:-386px;
+	margin-top:-246px;
+	width:493px;
+	height:493px;
+	font-size:12px;
+	text-align:center;
+	letter-spacing:3px;
+	text-transform:uppercase;
+	color:#0fe9bd;
+	line-height:18px;
+	-webkit-font-smoothing:antialiased;
+	-webkit-transform:scale(0);
+	-moz-transform:scale(0);
+	-o-transform:scale(0);
+	-ms-transform:scale(0);
+	transform:scale(0);
+	-webkit-transition: -webkit-transform 0.4s 0.6s ease-out;
+    -moz-transition: -moz-transform 0.4s 0.6s ease-out;
+    -o-transition: -o-transform 0.4s 0.6s ease-out;
+    -ms-transition: -ms-transform 0.4s 0.6s ease-out;
+    transition: transform 0.4s 0.6s ease-out;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	
+}
+
+#about.etatabout #about_content {
+	-webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-o-transform:scale(1);
+	-ms-transform:scale(1);
+	transform:scale(1);
+}
+
+#losangeblanc {
+	position:absolute;
+	top:0;
+	z-index:21;
+	top:50%;
+	left:72px;
+	margin-top:-175px;
+	width:350px;
+	height:350px;
+	background:#FFF;
+	-webkit-transform:  rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform:  rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+}
+
+#texte {
+	position:absolute;
+	z-index:22;
+	width:493px;
+	top:60px;
+}
+
+#texte p {
+	margin:0 0 35px 0;
+	padding:0;
+	-webkit-font-smoothing:antialiased;
+}
+
+.gris {
+	color:#a8a8a8;
+}
+
+.hi {
+	color:#a8a8a8;
+	font-size:24px;
+}
+
+#map {
+	position:absolute;
+	z-index:20;
+	display:block;
+	left:50%;
+	top:50%;
+	margin-left:-170px;
+	margin-top:-400px;
+	width:800px;
+	height:800px;
+	background:url(http://paulineosmont.com/portfolio/design/map.png) no-repeat;
+	-webkit-transform:scale(0);
+	-moz-transform:scale(0);
+	-o-transform:scale(0);
+	-ms-transform:scale(0);
+	transform:scale(0);
+	-webkit-transition: -webkit-transform 0.4s 0.9s ease-out;
+    -moz-transition: -moz-transform 0.4s 0.9s ease-out;
+    -o-transition: -o-transform 0.4s 0.9s ease-out;
+    -ms-transition: -ms-transform 0.4s 0.9s ease-out;
+    transition: transform 0.4s 0.9s ease-out;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+}
+
+#about.etatabout #map {
+	-webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-o-transform:scale(1);
+	-ms-transform:scale(1);
+	transform:scale(1);
+}
+
+#map img {
+	-webkit-transform:scale(0);
+	-moz-transform:scale(0);
+	-o-transform:scale(0);
+	-ms-transform:scale(0);
+	transform:scale(0);
+}
+
+#map_titre {
+	position:absolute;
+	left:315px;
+	top:169px;
+	-webkit-transition: -webkit-transform 0.4s 1.4s ease-out;
+    -moz-transition: -moz-transform 0.4s 1.4s ease-out;
+    -o-transition: -o-transform 0.4s 1.4s ease-out;
+    -ms-transition: -ms-transform 0.4s 1.4s ease-out;
+    transition: transform 0.4s 1.4s ease-out;
+}
+
+#map_sunderland {
+	position:absolute;
+	left:388px;
+	top:339px;
+	-webkit-transition: -webkit-transform 0.4s 1.8s ease-out;
+    -moz-transition: -moz-transform 0.4s 1.8s ease-out;
+    -o-transition: -o-transform 0.4s 1.8s ease-out;
+    -ms-transition: -ms-transform 0.4s 1.8s ease-out;
+    transition: transform 0.4s 1.8s ease-out;
+}
+
+#map_paris {
+	position:absolute;
+	left:397px;
+	top:375px;
+	-webkit-transition: -webkit-transform 0.4s 2s ease-out;
+    -moz-transition: -moz-transform 0.4s 2s ease-out;
+    -o-transition: -o-transform 0.4s 2s ease-out;
+    -ms-transition: -ms-transform 0.4s 2s ease-out;
+    transition: transform 0.4s 2s ease-out;
+}
+
+#map_montreal {
+	position:absolute;
+	left:274px;
+	top:364px;
+	-webkit-transition: -webkit-transform 0.4s 2.2s ease-out;
+    -moz-transition: -moz-transform 0.4s 2.2s ease-out;
+    -o-transition: -o-transform 0.4s 2.2s ease-out;
+    -ms-transition: -ms-transform 0.4s 2.2s ease-out;
+    transition: transform 0.4s 2.2s ease-out;
+}
+
+#about.etatabout #map img {
+	-webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-o-transform:scale(1);
+	-ms-transform:scale(1);
+	transform:scale(1);
+}
+
+
+
+/*************************************** GRID ********************************/
+
+#grid {
+	position:absolute;
+	z-index:1;
+	top:100%;
+	left:70px;
+	width:auto;
+	height:100%;
+	background:#fff;
+	-webkit-transition: top 0.7s ease-out, left 0.7s ease-out;
+    -moz-transition: top 0.7s ease-out, left 0.7s ease-out;
+    -o-transition: top 0.7s ease-out, left 0.7s ease-out;
+    -ms-transition: top 0.7s ease-out, left 0.7s ease-out;
+    transition: top 0.7s ease-out, left 0.7s ease-out;
+}
+
+#ligne1 {
+	position:absolute;
+	display:block;
+	top:0;
+	width:4000px;
+	left:-0px;
+	height:50%;
+	background:#000;
+	-webkit-transition: left 0.1s ease-in;
+    -moz-transition: left 0.1s ease-in;
+    -o-transition: left 0.1s ease-in;
+    -ms-transition: left 0.1s ease-in;
+    transition: left 0.1s ease-in;	
+	-webkit-transition-delay: 1s;
+	-moz-transition-delay: 1s;
+	-o-transition-delay: 1s;
+	-ms-transition-delay: 1s;
+	transition-delay: 1s;
+}
+
+#ligne2 {
+	position:absolute;
+	display:block;
+	top:50%;
+	width:4000px;
+	left:0px;
+	height:50%;
+	background:#000;
+	-webkit-transition: left 0.1s ease-in;
+    -moz-transition: left 0.1s ease-in;
+    -o-transition: left 0.1s ease-in;
+    -ms-transition: left 0.1s ease-in;
+    transition: left 0.1s ease-in;	
+	-webkit-transition-delay: 1s;
+	-moz-transition-delay: 1s;
+	-o-transition-delay: 1s;
+	-ms-transition-delay: 1s;
+	transition-delay: 1s;
+}
+
+#ligne1.visible , #ligne2.visible {
+	left:0px;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+.case1, .case2 {
+	display:block;
+	position:relative;
+	height:100%;
+	float:left;	
+	overflow:hidden;
+	opacity:1;
+	-webkit-transition: opacity 0.3s ease-in;
+    -moz-transition: opacity 0.3s ease-in;
+    -o-transition: opacity 0.3s ease-in;
+    -ms-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+}
+
+.case1 {
+	width:600px;
+}
+
+.case2 {
+	width:400px;
+}
+
+.case1 img, .case2 img {
+	height:100%;
+}
+
+.case1 .mask, .case2 .mask {
+	position:absolute;
+	background-color: #f3f3f3; 
+    width: 140%;
+    height: 210%;
+	-webkit-transform:  rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform:  rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+    -webkit-transition: all 0.2s 0.2s ease-in-out;
+    -moz-transition: all 0.2s 0.2s ease-in-out;
+    -o-transition: all 0.2s 0.2s ease-in-out;
+    -ms-transition: all 0.2s 0.2s ease-in-out;
+    transition: all 0.2s 0.2s ease-in-out;
+}
+
+.case1 .mask {
+	left:85%;
+	top:85%;
+}
+
+.case2 .mask {
+	left:78%;
+	top:64%;
+}
+
+
+.case1.actif, .case2.actif {
+	cursor:pointer;
+}
+
+.case1.actif:hover .mask, .case2.actif:hover .mask {
+	-webkit-transition: all 0.2s 0s ease-in-out;
+    -moz-transition: all 0.2s 0s ease-in-out;
+    -o-transition: all 0.2s 0s ease-in-out;
+    -ms-transition: all 0.2s 0s ease-in-out;
+    transition: all 0.2s 0s ease-in-out;
+}
+
+.case1.actif:hover .mask {
+	left:-24%;
+	top:-50%;
+}
+
+.case2.actif:hover .mask {
+	left:-22%;
+	top:-50%;
+}
+
+.case1 h3, .case2 h3 {
+	position:absolute;
+	z-index:3;
+	width:100%;
+	left:100%;
+	top:-10%;
+	color:#0fe9bd;
+	font-size:24px;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight:normal;
+	letter-spacing:5px;
+	-webkit-font-smoothing:antialiased;
+	-webkit-transition: all 0.2s 0s ease-in-out;
+    -moz-transition: all 0.2s 0s ease-in-out;
+    -o-transition: all 0.2s 0s ease-in-out;
+    -ms-transition: all 0.2s 0s ease-in-out;
+    transition: all 0.2s 0s ease-in-out;
+}
+
+.case1.actif:hover h3, .case2.actif:hover h3 {
+	left:0%;
+	top:50%;
+	margin-top:-90px;
+	-webkit-transition: all 0.2s 0.1s ease-in-out;
+    -moz-transition: all 0.2s 0.1s ease-in-out;
+    -o-transition: all 0.2s 0.1s ease-in-out;
+    -ms-transition: all 0.2s 0.1s ease-in-out;
+    transition: all 0.2s 0.1s ease-in-out;
+}
+
+.case1 .sep, .case2 .sep {
+	position:absolute;
+	display:block;
+	width:100%;
+	height:1px; 
+	left:100%;
+	top:-1%;
+	-webkit-transition: all 0.2s 0s ease-in-out;
+    -moz-transition: all 0.2s 0s ease-in-out;
+    -o-transition: all 0.2s 0s ease-in-out;
+    -ms-transition: all 0.2s 0s ease-in-out;
+    transition: all 0.2s 0s ease-in-out;
+}
+
+.case1.actif:hover .sep, .case2.actif:hover .sep {
+	left:0%;
+	top:50%;
+	margin-top:-40px;
+	-webkit-transition: all 0.2s 0.1s ease-in-out;
+    -moz-transition: all 0.2s 0.1s ease-in-out;
+    -o-transition: all 0.2s 0.1s ease-in-out;
+    -ms-transition: all 0.2s 0.1s ease-in-out;
+    transition: all 0.2s 0.1s ease-in-out;
+}
+
+.case1 .sep div, .case2 .sep div {
+	position:relative;
+	width:35px;
+	height:1px;
+	background:#0fe9bd;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.case1 h4, .case2 h4 {
+	position:absolute;
+	z-index:3;
+	width:100%;
+	left:-100%;
+	top:110%;
+	color:#b2b2b2;
+	font-size:14px;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight:normal;
+	letter-spacing:2px;
+	-webkit-font-smoothing:antialiased;
+	-webkit-transition: all 0.2s 0s ease-in-out;
+    -moz-transition: all 0.2s 0s ease-in-out;
+    -o-transition: all 0.2s 0s ease-in-out;
+    -ms-transition: all 0.2s 0s ease-in-out;
+    transition: all 0.2s 0s ease-in-out;
+}
+
+.case1.actif:hover h4, .case2.actif:hover h4 {
+	left:0%;
+	top:50%;
+	margin-top:-10px;
+	-webkit-transition: all 0.2s 0.1s ease-in-out;
+    -moz-transition: all 0.2s 0.1s ease-in-out;
+    -o-transition: all 0.2s 0.1s ease-in-out;
+    -ms-transition: all 0.2s 0.1s ease-in-out;
+    transition: all 0.2s 0.1s ease-in-out;
+}
+
+.case1 .viewproject, .case2 .viewproject {
+	position:absolute;
+	z-index:3;
+	width:150px;
+	height:35px;
+	left:50%;
+	top:110%;
+	margin-left:-75px;
+	background:url(http://paulineosmont.com/portfolio/design/fondviewproject.jpg) repeat-y center right;
+	color:#FFF;
+	font-size:14px;
+	line-height:35px;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight:normal;
+	letter-spacing:2px;
+	-webkit-transition: all 0.2s 0s ease-in-out;
+    -moz-transition: all 0.2s 0s ease-in-out;
+    -o-transition: all 0.2s 0s ease-in-out;
+    -ms-transition: all 0.2s 0s ease-in-out;
+    transition: all 0.2s 0s ease-in-out;
+	cursor:pointer;
+}
+
+.case1.actif:hover .viewproject, .case2.actif:hover .viewproject {
+	left:50%;
+	margin-left:-75px;
+	top:70%;
+	-webkit-transition: left 0.2s 0.3s ease-in-out, margin-left 0.2s 0.3s ease-in-out, top 0.2s 0.3s ease-in-out, background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    -moz-transition: left 0.2s 0.3s ease-in-out, margin-left 0.2s 0.3s ease-in-out, top 0.2s 0.3s ease-in-out, background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    -o-transition: left 0.2s 0.3s ease-in-out, margin-left 0.2s 0.3s ease-in-out, top 0.2s 0.3s ease-in-out, background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    -ms-transition: left 0.2s 0.3s ease-in-out, margin-left 0.2s 0.3s ease-in-out, top 0.2s 0.3s ease-in-out, background 0.2s ease-out, color 0.2s 0.1s ease-out;
+    transition: left 0.2s 0.3s ease-in-out, margin-left 0.2s 0.3s ease-in-out, top 0.2s 0.3s ease-in-out, background 0.2s ease-out, color 0.2s 0.1s ease-out;
+}
+
+.case1.actif:hover .viewproject:hover, .case2.actif:hover .viewproject:hover {
+	background:url(http://paulineosmont.com/portfolio/design/fondviewproject.jpg) repeat-y center left;
+	color:#FFF;
+	
+}
+
+
+/************************************************** PROJET *********************************************/
+
+#container {
+	position:absolute;
+	left:250px;
+	height:100%;
+	top:200%;
+	background:#FFF;
+	width:auto;
+	overflow:visible;
+	z-index:1;
+	-webkit-transition: top 0.7s ease-out, left 0s ease-out;
+    -moz-transition: top 0.7s ease-out, left 0s ease-out;
+    -o-transition: top 0.7s ease-out, left 0s ease-out;
+    -ms-transition: top 0.7s ease-out, left 0s ease-out;
+    transition: top 0.7s ease-out, left 0s ease-out;
+}
+
+#container.etat1 {
+	top:100%;
+}
+
+#container.etat2 {
+	top:0;
+}
+
+#container.etatcontact, #container.etatabout {
+	-webkit-transition: top 0s ease-out, left 0.7s ease-out;
+    -moz-transition: top 0s ease-out, left 0.7s ease-out;
+    -o-transition: top 0s ease-out, left 0.7s ease-out;
+    -ms-transition: top 0s ease-out, left 0.7s ease-out;
+    transition: top 0s ease-out, left 0.7s ease-out;
+}
+
+
+
+#intro {
+	float:left;
+	position:relative;
+	display:block;
+	width:900px;
+	height:100%;
+	background:#ff8d1d;
+}
+
+#intro img {
+	width:100%;
+	height:auto;
+}
+
+#titre {
+	position:absolute;
+	width:100%;
+	height:75px;
+	text-align:center;
+}
+
+h1 {
+	margin-top:0;
+	margin-bottom:28px;
+	/*font-family:'DIN Next W01 Light';*/
+	font-size:30px;
+	line-height:30px;
+	letter-spacing:7px;
+	color:#FFF;
+	text-transform:uppercase;
+	font-weight:normal;
+}
+
+.soustitre {
+	/*font-family:'DIN Next W01 Light';*/
+	font-size:12px;
+	line-height:12px;
+	letter-spacing:3px;
+	color:#FFF;
+	text-transform:uppercase;
+	font-weight:normal;
+}
+
+#description {
+	position:relative;
+	float:left;
+	display:block;
+	background:#f3f3f3;
+	width:570px;
+	height:100%;
+	text-align:center;
+}
+
+#description h2 {
+	font-size:18px;
+	color:#ff8d1d;
+	letter-spacing:4px;
+	text-transform:uppercase;
+	font-weight:normal;
+	-webkit-font-smoothing:antialiased;
+	margin:85px auto 50px auto;
+}
+
+#description p {
+	margin:0 auto 20px auto;
+	width:335px;
+	color:#7d7d7d;
+	font-size:13px;
+	line-height:22px;
+	text-transform:uppercase;
+	letter-spacing:1px;
+}
+
+@media screen and (max-height: 820px) { 
+	#description p {
+		font-size:11px;
+		line-height:18px;
+	}
+}
+
+#description .sep {
+	margin:50px auto;
+	background:#ff8d1d;
+	width:23px;
+	height:1px;
+}
+
+#description .link {
+	margin:50px auto;
+	width:21px;
+	height:9px;
+	background-position:bottom;
+	background-repeat:no-repeat;
+	-webkit-transition: all 0.12s ease-out;
+    -moz-transition: all 0.12s ease-out;
+    -o-transition: all 0.12s ease-out;
+    -ms-transition: all 0.12s ease-out;
+    transition: all 0.12s ease-out;
+	cursor:pointer;
+}
+
+#description .link:hover {
+	background-position:top;
+	background-repeat:no-repeat;
+	-webkit-transition: all 0.12s ease-out;
+    -moz-transition: all 0.12s ease-out;
+    -o-transition: all 0.12s ease-out;
+    -ms-transition: all 0.12s ease-out;
+    transition: all 0.12s ease-out;
+}
+
+#retourgrid {
+	position:fixed;
+	right:-31px;
+	top:0;
+	z-index:99999999;
+	width:31px;
+	height:31px;
+	-webkit-transition: background 0.12s ease-out, right 0.3s ease-out;
+    -moz-transition: background 0.12s ease-out, right 0.3s ease-out;
+    -o-transition: background 0.12s ease-out, right 0.3s ease-out;
+    -ms-transition: background 0.12s ease-out, right 0.3s ease-out;
+    transition: background 0.12s ease-out, right 0.3s ease-out;
+	cursor:pointer;
+}
+
+#retourgrid.visible {
+	right:0;
+}
+
+#retourgrid:hover {
+	-webkit-transition: background 0.12s ease-out, right 0.3s ease-out;
+    -moz-transition: background 0.12s ease-out, right 0.3s ease-out;
+    -o-transition: background 0.12s ease-out, right 0.3s ease-out;
+    -ms-transition: background 0.12s ease-out, right 0.3s ease-out;
+    transition: background 0.12s ease-out, right 0.3s ease-out;
+}
+
+#retourgrid.artspire { background:url(http://paulineosmont.com/portfolio/projects/Art-Spire/retour.png) no-repeat top; }
+#retourgrid:hover.artspire  { background:url(http://paulineosmont.com/portfolio/projects/Art-Spire/retour.png) no-repeat bottom; }
+#retourgrid.delirium { background:url(http://paulineosmont.com/portfolio/projects/Delirium/retour.png) no-repeat top; }
+#retourgrid:hover.delirium  { background:url(http://paulineosmont.com/portfolio/projects/Delirium/retour.png) no-repeat bottom; }
+#retourgrid.dptevt { background:url(http://paulineosmont.com/portfolio/projects/DptEvt/retour.png) no-repeat top; }
+#retourgrid:hover.dptevt  { background:url(http://paulineosmont.com/portfolio/projects/DptEvt/retour.png) no-repeat bottom; }
+#retourgrid.im2a { background:url(http://paulineosmont.com/portfolio/projects/IM2A/retour.png) no-repeat top; }
+#retourgrid:hover.im2a  { background:url(http://paulineosmont.com/portfolio/projects/IM2A/retour.png) no-repeat bottom; }
+#retourgrid.tarte { background:url(http://paulineosmont.com/portfolio/projects/LaTarteTropezienne/retour.png) no-repeat top; }
+#retourgrid:hover.tarte  { background:url(http://paulineosmont.com/portfolio/projects/LaTarteTropezienne/retour.png) no-repeat bottom; }
+#retourgrid.recyclage { background:url(http://paulineosmont.com/portfolio/projects/LeRecyclagePasAPas/retour.png) no-repeat top; }
+#retourgrid:hover.recyclage  { background:url(http://paulineosmont.com/portfolio/projects/LeRecyclagePasAPas/retour.png) no-repeat bottom; }
+#retourgrid.mariage { background:url(http://paulineosmont.com/portfolio/projects/Mariage/retour.png) no-repeat top; }
+#retourgrid:hover.mariage  { background:url(http://paulineosmont.com/portfolio/projects/Mariage/retour.png) no-repeat bottom; }
+#retourgrid.mirage { background:url(http://paulineosmont.com/portfolio/projects/Mirage/retour.png) no-repeat top; }
+#retourgrid:hover.mirage  { background:url(http://paulineosmont.com/portfolio/projects/Mirage/retour.png) no-repeat bottom; }
+#retourgrid.origami { background:url(http://paulineosmont.com/portfolio/projects/Origami3D/retour.png) no-repeat top; }
+#retourgrid:hover.origami { background:url(http://paulineosmont.com/portfolio/projects/Origami3D/retour.png) no-repeat bottom; }
+#retourgrid.re6 { background:url(http://paulineosmont.com/portfolio/projects/RE6/retour.png) no-repeat top; }
+#retourgrid:hover.re6  { background:url(http://paulineosmont.com/portfolio/projects/RE6/retour.png) no-repeat bottom; }
+#retourgrid.deadtree { background:url(http://paulineosmont.com/portfolio/projects/SouloftheDeadTree/retour.png) no-repeat top; }
+#retourgrid:hover.deadtree { background:url(http://paulineosmont.com/portfolio/projects/SouloftheDeadTree/retour.png) no-repeat bottom; }
+#retourgrid.thewatchers { background:url(http://paulineosmont.com/portfolio/projects/thewatchers/retour.png) no-repeat top; }
+#retourgrid:hover.thewatchers  { background:url(http://paulineosmont.com/portfolio/projects/thewatchers/retour.png) no-repeat bottom; }
+#retourgrid.theworkmanual { background:url(http://paulineosmont.com/portfolio/projects/TheWorkManual/retour.png) no-repeat top; }
+#retourgrid:hover.theworkmanual  { background:url(http://paulineosmont.com/portfolio/projects/TheWorkManual/retour.png) no-repeat bottom; }
+#retourgrid.tokkunacademy { background:url(http://paulineosmont.com/portfolio/projects/tokkunacademy/retour.png) no-repeat top; }
+#retourgrid:hover.tokkunacademy  { background:url(http://paulineosmont.com/portfolio/projects/tokkunacademy/retour.png) no-repeat bottom; }
+#retourgrid.triangle { background:url(http://paulineosmont.com/portfolio/projects/Triangle/retour.png) no-repeat top; }
+#retourgrid:hover.triangle  { background:url(http://paulineosmont.com/portfolio/projects/Triangle/retour.png) no-repeat bottom; }
+#retourgrid.webdesignkingdom { background:url(http://paulineosmont.com/portfolio/projects/WebdesignKingdom/retour.png) no-repeat top; }
+#retourgrid:hover.webdesignkingdom  { background:url(http://paulineosmont.com/portfolio/projects/WebdesignKingdom/retour.png) no-repeat bottom; }
+#retourgrid.witchatt { background:url(http://paulineosmont.com/portfolio/projects/Witchatt/retour.png) no-repeat top; }
+#retourgrid:hover.witchatt  { background:url(http://paulineosmont.com/portfolio/projects/Witchatt/retour.png) no-repeat bottom; }
+#retourgrid.pmmt { background:url(http://paulineosmont.com/portfolio/projects/PMMT/retour.png) no-repeat top; }
+#retourgrid:hover.pmmt  { background:url(http://paulineosmont.com/portfolio/projects/PMMT/retour.png) no-repeat bottom; }
+
+
+.link.delirium { background:url(http://paulineosmont.com/portfolio/projects/Delirium/link.png); }
+.link.re6 { background:url(http://paulineosmont.com/portfolio/projects/re6/link.png); }
+.link.artspire { background:url(http://paulineosmont.com/portfolio/projects/Art-Spire/link.png); }
+.link.mirage { background:url(http://paulineosmont.com/portfolio/projects/Mirage/link.png); }
+.link.soulofthedeadtree { background:url(http://paulineosmont.com/portfolio/projects/SouloftheDeadTree/link.png); }
+.link.thewatchers { background:url(http://paulineosmont.com/portfolio/projects/TheWatchers/link.png); }
+.link.triangle { background:url(http://paulineosmont.com/portfolio/projects/Triangle/link.png); }
+.link.pmmt { background:url(http://paulineosmont.com/portfolio/projects/pmmt/link.png); }
+
+
+#description .role {
+	position:absolute;
+	display:table;
+	bottom:0;
+	width:100%;
+	height:18%;
+	background:#dcdcdc;
+	font-size:14px;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	line-height:20px;
+	color:#FFF;
+	-webkit-font-smoothing:antialiased;
+}
+
+#description .role div {
+	display:table-cell;
+	vertical-align:middle;
+}
+
+#description .titrerole {
+	line-height:32px;	
+	font-size:18px;
+	-webkit-font-smoothing:antialiased;
+}
+
+#visu {
+	float:left;
+	position:relative;
+	display:block;
+	height:100%;
+	width:auto;
+	text-align:center;
+}
+
+#visu img {
+	position:relative;
+	display:block;
+	width:auto;
+	height:100%;
+}
+
+h6 {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-30px;
+	padding:20px 60px;
+	font-size:24px;
+	line-height:24px;
+	text-transform:uppercase;
+	font-weight:normal;
+	text-align:center;
+	color:#FFF;
+	letter-spacing:2px;
+	border:1px solid #ff8d1d;
+}
+
+.showcase {
+	float:left;
+	position:relative;
+	overflow:hidden;
+	display:block;
+	height:100%;
+	width:1400px;
+	background:#F3F3F3;
+}
+
+.showcase_container {
+	width:1400px;
+	top:0;
+}
+
+.imac {
+	position:absolute;
+	width:765px;
+	height:601px;
+	left:50%;
+	top:50%;
+	margin-left:-380px;
+	margin-top:-300px;
+}
+
+
+.ancre {
+	position:absolute;
+	width:10px;
+	height:10px;
+	border-radius:50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	right:140px;
+	background-color:#dcdcdc;
+	-webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    transition:  all 0.2s ease-out;
+	cursor:pointer;
+}
+
+.ancre:hover {
+	background-color:#aaa;
+	width:14px;
+	height:14px;
+	right:138px;
+}
+
+.ancre.current {
+	background-color:#333;
+}
+
+.ancre1 {
+	top:50%;
+	margin-top:100px;
+}
+
+.ancre2 {
+	top:50%;
+	margin-top:130px;
+}
+
+.ancre3 {
+	top:50%;
+	margin-top:160px;
+}
+
+.ancre4 {
+	top:50%;
+	margin-top:190px;
+}
+
+.ancre5 {
+	top:50%;
+	margin-top:220px;
+}
+
+.ancre1:hover {	margin-top:98px; }
+.ancre2:hover {	margin-top:128px; }
+.ancre3:hover {	margin-top:158px; }
+.ancre4:hover {	margin-top:188px; }
+.ancre5:hover {	margin-top:218px; }
+
+
+.nav {
+	position:absolute;
+	width:46px;
+	height:46px;
+	border-radius:50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	right:120px;
+	-webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+	cursor:pointer;
+}
+
+.navhaut {
+	background:url(http://paulineosmont.com/portfolio/design/flechehaut.png) no-repeat center 16px;
+	background-color:#dcdcdc;
+	top:50%;
+	margin-top:-56px;
+	
+}
+
+.navbas {
+	background:url(http://paulineosmont.com/portfolio/design/flechebas.png) no-repeat center 18px;
+	background-color:#dcdcdc;
+	top:50%;
+	margin-top:10px;
+}
+
+.navbas:hover, .navhaut:hover {
+	background-color:#aaa;
+}
+
+.captures {
+	position:absolute;
+	display:block;
+	width:100%;
+	top:100%;
+	text-align:center;
+}
+
+.captures img {
+	position:relative;
+	width:765px;
+	height:auto;
+	margin:0 auto 50px auto;
+}
+
+#capturesbis {
+	float:left;
+	position:relative;
+	display:block;
+	height:100%;
+}
+
+#capturesbis img {
+	position:relative;
+	width:auto;
+	height:100%;
+	margin:0;
+	float:left;
+}
+
+#retour {
+	position:relative;
+	width:50px;
+	height:100%;
+	background-color:#FFF;
+	float:left;
+	cursor:pointer;
+	-webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+}
+
+#retour:hover {
+	background-color:#0fe9bd;
+	-webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+}
+
+#retour .flecheretour {
+	position:absolute;
+	display:block;
+	overflow:hidden;
+	width:12px;
+	height:23px;
+	left:19px;
+	top:50%;
+	margin-top:-12px;	
+}
+
+#retour .flecheretour img {
+	position:absolute;
+	left:0px;	
+	-webkit-transition: left 0.2s ease-out;
+    -moz-transition: left 0.2s ease-out;
+    -o-transition: left 0.2s ease-out;
+    -ms-transition: left 0.2s ease-out;
+    transition: left 0.2s ease-out;
+}
+
+#retour:hover .flecheretour img {
+	left:-12px;	
+}
+
+@media screen and (max-width: 1400px) { 
+	.showcase {
+		width:1000px;
+	}
+	
+	.showcase_container {
+		width:1000px;
+	}
+	
+	.imac {
+		margin-left:-370px;
+	}
+	
+	
+	.ancre {
+		right:58px;
+	}
+	
+	.ancre:hover {
+		right:56px;
+	}
+	
+	.nav {
+		right:40px;
+	}
+	
+}
+
+
+
+#warning-message { 
+	 position:fixed;
+	 z-index:9999999999;
+	 width:100%;
+	 height:100%;
+	 top:0;
+	 left:0;
+	 background:#FFF;
+	 text-align:center;
+	 display: none;
+}
+
+#warning-message div {
+	position:absolute;
+	top:30%;
+	left:50%;
+	width:60%;
+	margin-left:-30%;
+	font-size:24px;
+	color:#888;
+	line-height:30px;
+}
+ 
+ @media only screen and (orientation:portrait){
+        #warning-message { display:block; }
+    }
+ 
+ @media only screen and (orientation:landscape){
+        #warning-message { display:none; }
+    }
