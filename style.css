@@ -124,7 +124,7 @@ ul, li {
 	top:293px;
 	width:9px;
 	height:16px;
-	background:url(http://paulineosmont.com/portfolio/design/fleche.png) no-repeat;	
+	background:url(img/fleche.png) no-repeat;	
 	-webkit-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
     -moz-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
     -o-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
@@ -199,7 +199,7 @@ ul, li {
 	left:250px;
 	width:100%;
 	height:100%;
-	background:url(http://paulineosmont.com/portfolio/design/home.jpg);
+	background:url(img/home.jpg);
 	background-size:cover;
 	background-position:center center;
 	-webkit-transition: top 0.7s ease-out, left 0.7s ease-out, width 0s 0s;
@@ -229,7 +229,7 @@ ul, li {
 	position:absolute;
 	z-index:11;
 	left:50%;
-	top:50%;
+	top:15%;
 	width:160px;
 	margin-left:-100px;
 	padding:18px;
@@ -284,7 +284,7 @@ ul, li {
 	left:-100%;
 	width:0;
 	height:100%;
-	background:url(http://paulineosmont.com/portfolio/design/about.jpg);
+	background:url(img/about.jpg);
 	background-size:cover;
 	background-position:top left;
 	-webkit-transition: left 0s ease-out, width 0s 0.7s ease-out;
