@@ -2,7 +2,7 @@ var contentWidth = $(window).width() - 250;
 var contentHeight = $(window).height();
 var demiHeight = contentHeight / 2;
 $(document).ready(function() {
-	$("#content, #btn_workgrid, #lettres").removeClass("depart");
+	$("#content, #btn_home").removeClass("start");
 	var iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false);
 	var ratio = $(window).height() / 700;
 	var largeurCase1, largeurCase2, hauteurCase, placementtitre, margeHomeLeft, margeHomeTop, positionFleche, largeurContainer, largeurVisu, largeurCaptureBis, previousOpen;
@@ -64,7 +64,7 @@ $(document).ready(function() {
 			$("#container").css("width", largeurContainer + "px");
 		}
 	};
-	$("#btn_workgrid, .open_works, #retourgrid").click(function() {
+	$("#btn_home, .open_works, #retourgrid").click(function() {
 		if (isMoving == false) {
 			isMoving = true;
 			$("#retourgrid").removeClass();
@@ -392,7 +392,6 @@ $(document).ready(function() {
 			var posS = window.pageXOffset + 250;
 			$("#content, #grid, #container").removeClass("etat1");
 			$("#content, #grid, #container").addClass("etat2");
-			//$("#container").css("width", LargeurProjet);
 			$("#container").css("left", posS + "px");
 			$("#intro").css("width", 900 * ratio + "px");
 			placementtitre = (parseInt(contentHeight) - parseInt(450 * ratio)) / 2 - 37.5;
