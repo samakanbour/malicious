@@ -137,13 +137,13 @@ ul, li {
 	left:250px;
 }
 
-#sousmenu {
+#submenu {
 	position:fixed;
 	z-index:99;
 	left:70px;
 	width:180px;
 	height:100%;
-	background:url(http://paulineosmont.com/portfolio/design/ombresousmenu.png) repeat-y;
+	background:url(img/ombre.png) repeat-y;
 	background-color:#0fe9bd;
 	-webkit-transition: left 0.7s ease-out;
     -moz-transition: left 0.7s ease-out;
@@ -152,11 +152,11 @@ ul, li {
     transition: left 0.7s ease-out;
 }
 
-#sousmenu.visible {
+#submenu.visible {
 	left:250px;
 }
 
-#sousmenu ul {
+#submenu ul {
 	position:absolute;
 	top:50%;
 	margin-top:-125px;
@@ -164,7 +164,7 @@ ul, li {
 	height:250px;
 }
 
-#sousmenu ul li {
+#submenu ul li {
 	width:180px;
 	margin-bottom:30px;
 	text-transform:uppercase;
@@ -182,7 +182,7 @@ ul, li {
 	cursor:pointer;
 }
 
-#sousmenu ul li:hover, #sousmenu ul li.current {
+#submenu ul li:hover, #submenu ul li.current {
 	color:#fff;
 }
 
@@ -231,7 +231,6 @@ ul, li {
 	left:50%;
 	top:50%;
 	width:160px;
-	margin-top:240px;
 	margin-left:-100px;
 	padding:18px;
 	border:1px solid #868686;
@@ -415,7 +414,7 @@ ul, li {
 	transition-delay: 0s;
 }
 
-/**/
+/*WARNING*/
 #warning-message { 
 	 position:fixed;
 	 z-index:9999999999;
