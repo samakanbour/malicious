@@ -54,8 +54,8 @@ a, li {
 .logo {
 	display:block;
 	position:relative;
-	width:155px;
-	margin:0px auto 45px auto;
+	width:100px;
+	margin:0px auto 80px auto;
 	cursor:pointer;	
 }
 
@@ -141,7 +141,7 @@ ul, li {
 	position:fixed;
 	z-index:99;
 	left:70px;
-	width:180px;
+	width:100px;
 	height:100%;
 	background:url(img/ombre.png) repeat-y;
 	background-color:#0fe9bd;
@@ -160,12 +160,12 @@ ul, li {
 	position:absolute;
 	top:50%;
 	margin-top:-125px;
-	width:180px;
+	width:100px;
 	height:250px;
 }
 
 #submenu ul li {
-	width:180px;
+	width:100px;
 	margin-bottom:30px;
 	text-transform:uppercase;
 	text-align:center;
