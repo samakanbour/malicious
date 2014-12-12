@@ -1,6 +1,24 @@
 var contentWidth = $(window).width() - 250;
 var contentHeight = $(window).height();
 var demiHeight = contentHeight / 2;
+var labels = ["home", "about", "works"];
+
+$(document).keydown(function(e){
+	if (rubActive != labels[2] || !$("#submenu ul li.current")[0]) {
+		return false;
+	}
+	var sibling = null;
+    if (e.keyCode == 38) {
+    	sibling = $("#submenu ul li.current")[0].previousElementSibling;
+    } else if (e.keyCode == 40) { 
+    	sibling = $("#submenu ul li.current")[0].nextElementSibling;
+    }
+    if (sibling) {
+    	$(sibling).click();
+	}
+    return false;
+});
+
 $(document).ready(function() {
 	$("#content, #btn_home").removeClass("start");
 	var iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false);
@@ -65,7 +83,6 @@ $(document).ready(function() {
 		if (isMoving == false) {
 			isMoving = true;
 			$("#retourgrid").removeClass();
-			$(".open_works").html("Works");
 			setTimeout(function() {
 				$("#about").css("left", -contentWidth + 350);
 				isMoving = false;
@@ -115,14 +132,13 @@ $(document).ready(function() {
 			$("#content, #container").css("left", "250px")
 			$("#ligne1, #ligne2").addClass("visible");
 			$("#submenu, .fleche").addClass("visible");
-			rubActive = "works";
+			rubActive = labels[2];
 		}
 	});
 	$(".open_about").click(function() {
 		if (isMoving == false) {
 			isMoving = true;
 			$("#retourgrid").removeClass();
-			$(".open_works").html("Works");
 			$("#about").addClass("visible");
 			$("#about").css("width", contentWidth);
 			$("#menu ul li").removeClass("current");
@@ -136,15 +152,14 @@ $(document).ready(function() {
 				isMoving = false;
 			}, 700);
 			$("#submenu, .fleche").removeClass("visible");
-			rubActive = "about";
-			previousOpen = "about";
+			rubActive = labels[1];
+			previousOpen = labels[1];
 		}
 	});
 	$(".logo").click(function() {
 		if (isMoving == false) {
 			isMoving = true;
 			$("#retourgrid").removeClass();
-			$(".open_works").html("Works");
 			$("#about").css("left", -contentWidth + 250);
 			$("#content, #container").css("overflow", "hidden");
 			$("#menu ul li").removeClass("current");
@@ -197,7 +212,7 @@ $(document).ready(function() {
 				isMoving = false;
 			}, 700);
 			$("#content").css("left", "250px");
-			rubActive = "home";
+			rubActive = labels[0];
 		}
 	});
 	$("#submenu ul li").click(function() {
