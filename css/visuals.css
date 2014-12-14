@@ -1,0 +1,67 @@
+section {
+    width: 800px;
+    margin: 40px auto;
+}
+
+section h1 {
+	text-transform: uppercase;
+}
+
+.qatar {
+    fill: #9F0251;
+    color: #9F0251;
+    stroke: #9F0251;
+}
+
+.world {
+    fill: #0099FF;
+    color: #0099FF;
+    stroke: #0099FF;
+}
+
+.qatar img {
+    width: 18px;
+}
+
+.icons.aligned .world {
+	float: right;
+}
+
+.math {
+    font-size: 13px;
+}
+
+/*SANKEY*/
+.node rect {
+    fill-opacity: .9;
+    stroke-opacity: 0;
+}
+
+.node text {
+    pointer-events: none;
+}
+
+.link {
+    fill: none;
+    stroke: #0fe9bd;
+    stroke-opacity: .2;
+}
+
+.link:hover {
+    stroke-opacity: .7;
+}
+
+/*SPIDER*/
+.axis text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+table td, table th  {
+    padding-right: 40px;
+}
+
+table {
+    text-align: left;
+    min-width: 500px;
+}
