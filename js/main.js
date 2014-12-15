@@ -50,7 +50,6 @@ $(document).ready(function() {
 			}, 700);
 			$("#visuals").removeClass("etatspecial");
 			$("#visuals").css("left", "350px");
-			// $("body, html").css("overflow", "visible");
 			$("#menu ul li").removeClass("current");
 			$(".open_story").addClass("current");
 			if ($("#content").hasClass("etatabout") == true) {
