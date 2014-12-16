@@ -2,7 +2,7 @@ $(document).ready(function() {
 	d3Sankey(getSankeyData(data.categories), '#interest');
 	d3Spider(data.wot.reputation, "#spider1");
 	d3Spider(data.wot.safety, "#spider2");
-	d3Matrix(dataMatrix(data.url), "#category");
+	d3Matrix(dataMatrix(data.url).matrix, "#category");
 });
 
 var CATEGORY_TITLES = {
@@ -17,7 +17,7 @@ var CATEGORY_TITLES = {
 	"Health": "Health",
 	"People_and_Society": "People_&_Society",
 	"Sports": "Sports",
-	"Reference": "Career_&_Education",
+	"Reference": "Reference",
 	"Travel": "Travel",
 	"Games": "Games",
 	"Autos_and_Vehicles": "Autos_&_Vehicles",
@@ -29,7 +29,7 @@ var CATEGORY_TITLES = {
 	"Arts_and_Entertainment": "Arts_&_Entertain",
 	"Internet_and_Telecom": "Internet_&_Tel",
 	"Home_and_Garden": "Home_&_Garden",
-	"Recreation_and_Hobbies": "Hobbies_&_Recreation",
+	"Recreation_and_Hobbies": "Hobbies",
 	"None": "Uncategorized"
 }
 var colors = ['#9F0251', '#0099FF', '#FF5732'];
@@ -155,29 +155,42 @@ d3Spider = function (data, id) {
 		maxValue: .8,
 		levels: 5,
 		ExtraWidthX: 300,
-		color: function(e){ return ['#9F0251', '#0099FF'][e] }
+		color: function(e){ return colors[e] }
 	}
 	RadarChart.draw(id, data, options);
 }
 
 function dataMatrix(data) {
 	var result = [];
+	var total = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
+	var unsafe = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
 	var categories = [];
 	for (c in data) {
 		for (url in data[c]) {
 			var e = data[c][url]
 			var category = CATEGORY_TITLES[e.category];
-				if (categories.indexOf(category) == -1) {
-					categories.push(category);
-					result.push({
-						key: category,
-						values: {
-							world: [],
-							qatar: []
-						}
-					})
-				}
-				result[categories.indexOf(category)].values[c].push({ url: url, type: e.wsafe > 0 ? 1 : e.vsafe > 1 ? 1 : 0 });
+			if (categories.indexOf(category) == -1) {
+				categories.push(category);
+				result.push({
+					key: category,
+					values: {
+						world: [],
+						qatar: []
+					}
+				})
+			}
+			var type = e.wsafe > 0 ? 1 : e.vsafe > 1 ? 1 : 0;
+			result[categories.indexOf(category)].values[c].push({ url: url, type: type });
+			total[c].count += 1;
+			total[c].reach += e.reach;
+			unsafe[c].count += type > 0 ? 1 : 0;
+			unsafe[c].reach += type > 0 ? e.reach : 0;
+			if (c == 'qatar' && url in data.world) {
+				total.common.count += 1;
+				total.common.reach += e.reach;
+				unsafe.common.count += type > 0 ? 1 : 0;
+				unsafe.common.reach += type > 0 ? e.reach : 0;
+			}
 		}
 	}
 	var clean = []
@@ -207,7 +220,7 @@ function dataMatrix(data) {
 			return b.type - a.type;
 		});
 	}
-	return clean;
+	return { matrix: clean, bars: {total: total, unsafe: unsafe} };
 }
 
 d3Matrix = function(data, name) {
@@ -215,8 +228,15 @@ d3Matrix = function(data, name) {
 	var barHeight = 11;
 	var y = d3.scale.linear().domain([0, data.length]).range([0, data.length * ((barHeight + 1) * 2 + 10)]);
 	var x = d3.scale.linear().domain([0, 1]).range([0, barWidth + 1]);
-	var svg = d3.select(name).append("svg").attr("width", 800).attr("height", data.length * ((barHeight + 1) * 2 + 10) + 20).append("g");
 	var padding = 80;
+	var width = 0;
+	for (c in data) {
+		var ww = data[c].values.world.length * (barWidth + 1) + 5 + padding;
+		var qw = data[c].values.qatar.length * (barWidth + 1) + 5 + padding;
+		width = ww > width ? ww : width;
+		width = qw > width ? qw : width;
+	}
+	var svg = d3.select(name).append("svg").attr("width", width + 50).attr("height", data.length * ((barHeight + 1) * 2 + 10) + 20).append("g");
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return d.url;
 	});
@@ -227,7 +247,7 @@ d3Matrix = function(data, name) {
 	var qpick = category.append("g").attr("class", "g-pick").selectAll("g").data(function(d) {
 		return d.values.qatar;
 	}).enter().append("g").style("fill", function(d) {
-		return d.type == 0 ? "#9F0251" : "#FF5732";
+		return d.type == 0 ? colors[0] : colors[2];
 	}).attr("transform", function(d, i) {
 		return "translate("+ (x(i) + padding) +",10)";
 	}).on("click", function(d) {
@@ -238,7 +258,7 @@ d3Matrix = function(data, name) {
 	var wpick = category.append("g").attr("class", "g-pick").selectAll("g").data(function(d) {
 		return d.values.world;
 	}).enter().append("g").style("fill", function(d) {
-		return d.type == 0 ? "#0099FF" : "#FF5732";
+		return d.type == 0 ? colors[1] : colors[2];
 	}).attr("transform", function(d, i) {
 		return "translate("+ (x(i) + padding) +",22)"
 	}).on("click", function(d) {
@@ -256,7 +276,8 @@ d3Matrix = function(data, name) {
 		}).length;
 	}).attr("x", function(d) {
 		var len = d.values.qatar.length * (barWidth + 1) + 5 + padding;
-		return len < 800 ? len : 790;
+		// return len < 800 ? len : 790;
+		return len;
 	}).attr("y", 18);
 
 	category.append("text").attr("class", "g-number").text(function(d) {
@@ -265,6 +286,7 @@ d3Matrix = function(data, name) {
 		}).length;
 	}).attr("x", function(d) {
 		var len = d.values.world.length * (barWidth + 1) + 5 + padding;
-		return len < 800 ? len : 790;
+		return len;
+		// return len < 800 ? len : 790;
 	}).attr("y", 32);
 }

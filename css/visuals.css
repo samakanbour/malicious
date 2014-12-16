@@ -19,12 +19,26 @@ section h1 {
     stroke: #0099FF;
 }
 
+.malicious {
+    fill: #FF5732;
+    color: #FF5732;
+    stroke: #FF5732;
+}
+
 .qatar img {
     width: 18px;
 }
 
+.icons {
+    letter-spacing: 2px;
+}
+
 .icons.aligned .world {
 	float: right;
+}
+
+.icons.right {
+    float: right;
 }
 
 .math {
