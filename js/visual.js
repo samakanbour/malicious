@@ -42,7 +42,7 @@ d3Sankey = function (data, id) {
 			bottom: 1,
 			left: 1
 		},
-		width = 800 - margin.left - margin.right,
+		width = 700 - margin.left - margin.right,
 		height = 600 - margin.top - margin.bottom;
 	var max = 0;
 	for (d in data.nodes) { max = data.nodes[d].rank > max ? data.nodes[d].rank : max; }
@@ -342,8 +342,8 @@ d3Bars = function(data, id, z) {
 		max = data[d].qatar[z] > max ? data[d].qatar[z] : max;
 		max = data[d].world[z] > max ? data[d].world[z] : max;
 	}
-	var w = d3.scale.linear().domain([0, max]).range([0, 400]);
-	var svg = d3.select(id).append("svg").attr("width", 800).attr("height", 500).append("g");
+	var w = d3.scale.linear().domain([0, max]).range([0, 350]);
+	var svg = d3.select(id).append("svg").attr("width", 700).attr("height", 500).append("g");
 	svg.append('defs').append('pattern').attr('id', 'colorHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
 	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#9F0251').attr('stroke-width', 2);
 	svg.append('defs').append('pattern').attr('id', 'whiteHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
@@ -354,19 +354,19 @@ d3Bars = function(data, id, z) {
 	});
 
 	bar.append("rect").attr("height", barHeight).attr("fill", "#9F0251")
-	.attr("x", function(d) { return 400 - w(d.qatar[z]) + w(d.common[z])/2 })
+	.attr("x", function(d) { return 350 - w(d.qatar[z]) + w(d.common[z])/2 })
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.qatar[z]) }).duration(1000);
 	
 	bar.append("rect").attr("height", barHeight).attr("fill", "#0099FF")
-	.attr("x", function(d) { return 400 - w(d.common[z])/2 })
+	.attr("x", function(d) { return 350 - w(d.common[z])/2 })
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.world[z]) }).duration(1000);
 	
 	bar.append("rect").attr("height", barHeight).attr('fill', 'url(#colorHatch)')
-	.attr("x", function(d) { return 400 - w(d.common[z])/2 })
+	.attr("x", function(d) { return 350 - w(d.common[z])/2 })
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.common[z]) }).duration(1000);
 	
-	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 400 - w(d.qatar[z]) + w(d.common[z])/2 - 10 })
+	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 350 - w(d.qatar[z]) + w(d.common[z])/2 - 10 })
 	.attr("y", 14).style("text-anchor", "end").text(function(d) { return d.qatar[z] });
-	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 400 + w(d.world[z]) - w(d.common[z])/2 + 10 })
+	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 350 + w(d.world[z]) - w(d.common[z])/2 + 10 })
 	.attr("y", 14).style("text-anchor", "start").text(function(d) { return d.world[z] });
 }
