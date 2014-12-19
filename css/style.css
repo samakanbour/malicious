@@ -31,7 +31,7 @@ a, li {
     position: fixed;
     z-index: 100;
     left: 0;
-    width: 250px;
+    width: 200px;
     height: 100%;
     background: #fff;
     text-align: center;
@@ -40,14 +40,14 @@ a, li {
 #rub {
     height: 450px;
     position: absolute;
-    width: 250px;
+    width: 200px;
     top: 45%;
     margin-top: -225px;
 }
 
-.seprub {
+.line {
     height: 1px;
-    width: 20px;
+    width: 30px;
     background: #ddd;
     margin: 40px auto;
 }
@@ -119,14 +119,14 @@ ul, li {
     cursor: pointer;
 }
 
-#menu .fleche {
+#menu .arrow {
     position: absolute;
     opacity: 0;
     left: 230px;
     top: 293px;
     width: 9px;
     height: 16px;
-    background: url(../img/fleche.png) no-repeat;
+    background: url(../img/arrow.png) no-repeat;
     -webkit-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
     -moz-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
     -o-transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
@@ -134,9 +134,9 @@ ul, li {
     transition: opacity 0.3s 0.4s ease-out, left 0.7s ease-out;
 }
 
-#menu .fleche.visible {
+#menu .arrow.visible {
     opacity: 1;
-    left: 250px;
+    left: 200px;
 }
 
 #submenu {
@@ -155,7 +155,7 @@ ul, li {
 }
 
 #submenu.visible {
-    left: 250px;
+    left: 200px;
 }
 
 #submenu ul {
@@ -198,7 +198,7 @@ ul, li {
     display: block;
     top: 0;
     overflow: hidden;
-    left: 250px;
+    left: 200px;
     width: 100%;
     height: 100%;
     background-color: rgb(255, 87, 50);
@@ -287,10 +287,11 @@ ul, li {
     text-align: center;
     line-height: 25px;
     color: #fff;
+    z-index: 0;
 }
 
 #about.etatabout {
-    left: 250px;
+    left: 200px;
 }
 
 #about.visible {
@@ -326,7 +327,7 @@ ul, li {
     position: absolute;
     z-index: 1;
     left: 70px;
-    width: calc(100% - 350px);
+    width: calc(100% - 300px);
     height: 100%;
     background: #fff;
     -webkit-transition: top 0.7s ease-out, left 0.7s ease-out;
@@ -389,7 +390,7 @@ ul, li {
 /*WARNING*/
 #warning-message {
     position: fixed;
-    z-index: 9999999999;
+    z-index: 999;
     width: 100%;
     height: 100%;
     top: 0;

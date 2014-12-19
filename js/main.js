@@ -1,4 +1,4 @@
-var contentWidth = $(window).width() - 250;
+var contentWidth = $(window).width() - 200;
 var contentHeight = $(window).height();
 var demiHeight = contentHeight / 2;
 var labels = ["home", "about", "story"];
@@ -29,27 +29,27 @@ $(document).ready(function() {
 	});
 
 	function gestionResize() {
-		contentWidth = $(window).width() - 250;
+		contentWidth = $(window).width() - 200;
 		contentHeight = $(window).height();
 		demiHeight = contentHeight / 2;
 		demiHeight = parseInt(demiHeight) + 1;
 		$("#content, #about").css("width", contentWidth);
 		$("#content").css("height", contentHeight);
 		if ($("#content").hasClass("etatabout") == false) {
-			$("#about").css("left", -contentWidth + 250);
+			$("#about").css("left", -contentWidth + 200);
 		}
-		positionFleche = $(".open_story").offset().top - 2;
-		$(".fleche").css("top", positionFleche + "px");
+		positionarrow = $(".open_story").offset().top - 2;
+		$(".arrow").css("top", positionarrow + "px");
 	};
 	$("#btn_home, .open_story").click(function() {
 		if (isMoving == false) {
 			isMoving = true;
 			setTimeout(function() {
-				$("#about").css("left", -contentWidth + 350);
+				$("#about").css("left", -contentWidth + 300);
 				isMoving = false;
 			}, 700);
 			$("#visuals").removeClass("etatspecial");
-			$("#visuals").css("left", "350px");
+			$("#visuals").css("left", "300px");
 			$("#menu ul li").removeClass("current");
 			$(".open_story").addClass("current");
 			if ($("#content").hasClass("etatabout") == true) {
@@ -60,12 +60,12 @@ $(document).ready(function() {
 				setTimeout(function() {
 					$("#about").removeClass("visible");
 				}, 700);
-				$("#about").css("left", -contentWidth + 350);
+				$("#about").css("left", -contentWidth + 300);
 			}
 			$("#content, #visuals").addClass("etat1");
-			$("#content").css("left", "250px")
+			$("#content").css("left", "200px")
 			$("#ligne1, #ligne2").addClass("visible");
-			$("#submenu, .fleche").addClass("visible");
+			$("#submenu, .arrow").addClass("visible");
 			rubActive = labels[2];
 		}
 	});
@@ -78,12 +78,12 @@ $(document).ready(function() {
 			$("#menu ul li").removeClass("current");
 			$(".open_about").addClass("current");
 			$("#about, #content, #visuals").addClass("etatabout");
-			$("#about").css("left", "250px");
+			$("#about").css("left", "200px");
 			$("#content, #visuals").css("left", "100%");
 			setTimeout(function() {
 				isMoving = false;
 			}, 700);
-			$("#submenu, .fleche").removeClass("visible");
+			$("#submenu, .arrow").removeClass("visible");
 			rubActive = labels[1];
 		}
 	});
@@ -91,13 +91,13 @@ $(document).ready(function() {
 		$("body, html").css("overflow", "hidden");
 		if (isMoving == false) {
 			isMoving = true;
-			$("#about").css("left", -contentWidth + 250);
+			$("#about").css("left", -contentWidth + 200);
 			$("#menu ul li").removeClass("current");
 			if ($("#content").hasClass("etat1") == true) {
 				$("#content, #visuals").removeClass("etat1");
-				$("#submenu, .fleche").removeClass("visible");
+				$("#submenu, .arrow").removeClass("visible");
 				$("#ligne1, #ligne2").removeClass("visible");
-				$("#visuals").css("left", "250px");
+				$("#visuals").css("left", "200px");
 			}
 			if ($("#content").hasClass("etatabout") == true) {
 				$("#about").removeClass("etatabout");
@@ -107,14 +107,14 @@ $(document).ready(function() {
 				setTimeout(function() {
 					$("#about").removeClass("visible");
 				}, 700);
-				$("#about").css("left", -contentWidth + 250);
+				$("#about").css("left", -contentWidth + 200);
 			}
 			$("#content").css("width", contentWidth);
 			setTimeout(function() {
 				$("#visuals").css("left", "70px");
 				isMoving = false;
 			}, 700);
-			$("#content").css("left", "250px");
+			$("#content").css("left", "200px");
 			rubActive = labels[0];
 		}
 	});

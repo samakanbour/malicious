@@ -2,7 +2,8 @@ $(document).ready(function() {
 	d3Sankey(getSankeyData(data.categories), '#interest');
 	d3Spider(data.wot.reputation, "#spider1");
 	d3Spider(data.wot.safety, "#spider2");
-	d3Matrix(dataMatrix(data.url).matrix, "#category");
+	d3Matrix(dataMatrix(data.url), "#category");
+	d3Bars(dataBars(data.url), "#malicious", 'count');
 });
 
 var CATEGORY_TITLES = {
@@ -162,8 +163,6 @@ d3Spider = function (data, id) {
 
 function dataMatrix(data) {
 	var result = [];
-	var total = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
-	var unsafe = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
 	var categories = [];
 	for (c in data) {
 		for (url in data[c]) {
@@ -181,16 +180,6 @@ function dataMatrix(data) {
 			}
 			var type = e.wsafe > 0 ? 1 : e.vsafe > 1 ? 1 : 0;
 			result[categories.indexOf(category)].values[c].push({ url: url, type: type });
-			total[c].count += 1;
-			total[c].reach += e.reach;
-			unsafe[c].count += type > 0 ? 1 : 0;
-			unsafe[c].reach += type > 0 ? e.reach : 0;
-			if (c == 'qatar' && url in data.world) {
-				total.common.count += 1;
-				total.common.reach += e.reach;
-				unsafe.common.count += type > 0 ? 1 : 0;
-				unsafe.common.reach += type > 0 ? e.reach : 0;
-			}
 		}
 	}
 	var clean = []
@@ -220,7 +209,60 @@ function dataMatrix(data) {
 			return b.type - a.type;
 		});
 	}
-	return { matrix: clean, bars: {total: total, unsafe: unsafe} };
+	return clean;
+}
+
+function dataBars(data) {
+	var barlist = [	'101', '103', '104', '105', '202', 
+					'201', '203', '204', '205', '206', '207', '102'];
+	var bardict = {};
+	var total = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
+	var unsafe = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
+	for (b in barlist) {
+		bardict[barlist[b]] = {qatar: {count:0, reach:0}, world: {count:0, reach:0}, common: {count:0, reach:0} };
+	}
+	var wv = [0, 0, 0];
+	var categories = [];
+	for (c in data) {
+		for (url in data[c]) {
+			var e = data[c][url]
+			var type = e.wsafe > 0 ? 1 : e.vsafe > 1 ? 1 : 0;			
+			total[c].count += 1;
+			total[c].reach += e.reach;
+			unsafe[c].count += type > 0 ? 1 : 0;
+			unsafe[c].reach += type > 0 ? e.reach : 0;
+			for (m in e.malicious){
+				if (barlist.indexOf(e.malicious[m]) > -1) {
+					bardict[e.malicious[m]][c].count += 1;
+					bardict[e.malicious[m]][c].reach += e.reach;
+				}
+			}
+			var n = 1;
+			wv[0] += e.wsafe > 0 ? 1 : 0;
+			wv[1] += e.vsafe > n ? 1 : 0;
+			wv[2] += e.wsafe > 0 && e.vsafe > n ? 1 : 0;
+			if (c == 'qatar' && url in data.world) {
+				total.common.count += 1;
+				total.common.reach += e.reach;
+				unsafe.common.count += type > 0 ? 1 : 0;
+				unsafe.common.reach += type > 0 ? e.reach : 0;
+				for (m in e.malicious){
+					if (barlist.indexOf(e.malicious[m]) > -1) {
+						bardict[e.malicious[m]].common.count += 1;
+						bardict[e.malicious[m]].common.reach += e.reach;
+					}
+				}
+				wv[0] -= e.wsafe > 0 ? 1 : 0;
+				wv[1] -= e.vsafe > n ? 1 : 0;
+				wv[2] -= e.wsafe > 0 && e.vsafe > n ? 1 : 0;
+			}
+		}
+	}
+	var bars = [];
+	for (b in barlist) {
+		bars.push(bardict[barlist[b]])
+	}
+	return bars;
 }
 
 d3Matrix = function(data, name) {
@@ -289,4 +331,42 @@ d3Matrix = function(data, name) {
 		return len;
 		// return len < 800 ? len : 790;
 	}).attr("y", 32);
+}
+
+d3Bars = function(data, id, z) {
+	var labels = [	'Malware', 'Phishing', 'Scam', 'Illegal', 'Privacy Risks', 
+					'Unethical', 'Suspicious', 'Hate / Discrimination', 'Spam', 'Unwanted Programs', 'Ads / Pop-ups', 'Poor Customer Experience'];
+	var barHeight = 20;
+	var max = 0;
+	for (d in data) {
+		max = data[d].qatar[z] > max ? data[d].qatar[z] : max;
+		max = data[d].world[z] > max ? data[d].world[z] : max;
+	}
+	var w = d3.scale.linear().domain([0, max]).range([0, 400]);
+	var svg = d3.select(id).append("svg").attr("width", 800).attr("height", 500).append("g");
+	svg.append('defs').append('pattern').attr('id', 'colorHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
+	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#9F0251').attr('stroke-width', 2);
+	svg.append('defs').append('pattern').attr('id', 'whiteHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
+	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#fff').attr('stroke-width', 2);
+
+	var bar = svg.selectAll("g").data(data).enter().append("g").attr("transform", function(d, i) {
+		return "translate(0," + (i * (barHeight + 10)) + ")";
+	});
+
+	bar.append("rect").attr("height", barHeight).attr("fill", "#9F0251")
+	.attr("x", function(d) { return 400 - w(d.qatar[z]) + w(d.common[z])/2 })
+	.attr("width", 0).transition().attr("width", function(d) { return w(d.qatar[z]) }).duration(1000);
+	
+	bar.append("rect").attr("height", barHeight).attr("fill", "#0099FF")
+	.attr("x", function(d) { return 400 - w(d.common[z])/2 })
+	.attr("width", 0).transition().attr("width", function(d) { return w(d.world[z]) }).duration(1000);
+	
+	bar.append("rect").attr("height", barHeight).attr('fill', 'url(#colorHatch)')
+	.attr("x", function(d) { return 400 - w(d.common[z])/2 })
+	.attr("width", 0).transition().attr("width", function(d) { return w(d.common[z]) }).duration(1000);
+	
+	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 400 - w(d.qatar[z]) + w(d.common[z])/2 - 10 })
+	.attr("y", 14).style("text-anchor", "end").text(function(d) { return d.qatar[z] });
+	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 400 + w(d.world[z]) - w(d.common[z])/2 + 10 })
+	.attr("y", 14).style("text-anchor", "start").text(function(d) { return d.world[z] });
 }
