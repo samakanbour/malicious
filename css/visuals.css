@@ -31,6 +31,7 @@ section h1 {
 
 .icons {
     letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
 .icons.aligned .world {
@@ -43,6 +44,24 @@ section h1 {
 
 .math {
     font-size: 13px;
+}
+
+.reach {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.reach div {
+    cursor: pointer;
+}
+
+.reach:hover div {
+    color: #0fe9bd;
+    -webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
 }
 
 /*SANKEY*/

@@ -1,7 +1,7 @@
 var contentWidth = $(window).width() - 200;
 var contentHeight = $(window).height();
 var demiHeight = contentHeight / 2;
-var labels = ["home", "about", "story"];
+var labels = ["home", "about", "story"]; 
 
 $(document).keydown(function(e){
 	if (rubActive != labels[2] || !$("#submenu ul li.current")[0]) {
@@ -124,4 +124,16 @@ $(document).ready(function() {
 		$("section").hide();
 		$("#" + $(this)[0].title).show();
 	});
+	$(".reach div").click(function() {
+		if ($(this).hasClass("fa-toggle-on") == true) {
+			$(this).removeClass("fa-toggle-on").addClass("fa-toggle-off");
+			$("#malicious article").html('');
+			d3Bars(dataBars(data.url), "#malicious article", 'count');
+		} else {
+			$(this).removeClass("fa-toggle-off").addClass("fa-toggle-on");
+			$("#malicious article").html('');
+			d3Bars(dataBars(data.url), "#malicious article", 'reach');
+		}
+	});
+
 });

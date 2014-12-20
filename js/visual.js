@@ -3,7 +3,7 @@ $(document).ready(function() {
 	d3Spider(data.wot.reputation, "#spider1");
 	d3Spider(data.wot.safety, "#spider2");
 	d3Matrix(dataMatrix(data.url), "#category");
-	d3Bars(dataBars(data.url), "#malicious", 'count');
+	d3Bars(dataBars(data.url), "#malicious article", 'count');
 });
 
 var CATEGORY_TITLES = {
@@ -249,7 +249,6 @@ function dataBars(data) {
 				for (m in e.malicious){
 					if (barlist.indexOf(e.malicious[m]) > -1) {
 						bardict[e.malicious[m]].common.count += 1;
-						bardict[e.malicious[m]].common.reach += e.reach;
 					}
 				}
 				wv[0] -= e.wsafe > 0 ? 1 : 0;
@@ -260,6 +259,8 @@ function dataBars(data) {
 	}
 	var bars = [];
 	for (b in barlist) {
+		bardict[barlist[b]].qatar.reach = bardict[barlist[b]].qatar.reach / total.qatar.reach;
+		bardict[barlist[b]].world.reach = bardict[barlist[b]].world.reach / total.world.reach;
 		bars.push(bardict[barlist[b]])
 	}
 	return bars;
@@ -342,7 +343,7 @@ d3Bars = function(data, id, z) {
 		max = data[d].qatar[z] > max ? data[d].qatar[z] : max;
 		max = data[d].world[z] > max ? data[d].world[z] : max;
 	}
-	var w = d3.scale.linear().domain([0, max]).range([0, 325]);
+	var w = d3.scale.linear().domain([0, max]).range([0, 300]);
 	var svg = d3.select(id).append("svg").attr("width", 650).attr("height", 500).append("g");
 	svg.append('defs').append('pattern').attr('id', 'colorHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
 	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#9F0251').attr('stroke-width', 2);
@@ -354,7 +355,9 @@ d3Bars = function(data, id, z) {
 	});
 
 	bar.append("rect").attr("height", barHeight).attr("fill", "#9F0251")
-	.attr("x", function(d) { return 325 - w(d.qatar[z]) + w(d.common[z])/2 })
+	.attr("x", function(d) { return (-325 - w(d.common[z])/2) })
+	.attr("y", -barHeight)
+	.attr("transform", "rotate(180)")
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.qatar[z]) }).duration(1000);
 	
 	bar.append("rect").attr("height", barHeight).attr("fill", "#0099FF")
@@ -365,8 +368,8 @@ d3Bars = function(data, id, z) {
 	.attr("x", function(d) { return 325 - w(d.common[z])/2 })
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.common[z]) }).duration(1000);
 	
-	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 325 - w(d.qatar[z]) + w(d.common[z])/2 - 10 })
-	.attr("y", 14).style("text-anchor", "end").text(function(d) { return d.qatar[z] });
-	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 325 + w(d.world[z]) - w(d.common[z])/2 + 10 })
-	.attr("y", 14).style("text-anchor", "start").text(function(d) { return d.world[z] });
+	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 325 - w(d.qatar[z]) + w(d.common[z])/2 - 5 })
+	.attr("y", 14).style("text-anchor", "end").text(function(d) { return z == "count" ? d.qatar[z] : (d.qatar[z] * 100).toFixed(2) });
+	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 325 + w(d.world[z]) - w(d.common[z])/2 + 5 })
+	.attr("y", 14).style("text-anchor", "start").text(function(d) { return z == "count" ? d.world[z] : (d.world[z] * 100).toFixed(2) });
 }
