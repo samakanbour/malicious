@@ -272,6 +272,8 @@ function dataBars(data) {
 		bardict[barlist[b]].world.reach = bardict[barlist[b]].world.reach / total.world.reach;
 		bars.push(bardict[barlist[b]])
 	}
+	unsafe.qatar.reach = (unsafe.qatar.reach / total.qatar.reach * 100).toFixed(2);
+	unsafe.world.reach = (unsafe.world.reach / total.world.reach * 100).toFixed(2);
 	return { bars: bars, agree:agreep, unsafe:unsafe };
 }
 
@@ -344,11 +346,13 @@ d3Matrix = function(data, name) {
 }
 
 d3Bars = function(data, id, z) {
-	var texts = { qatar: {count:'Qatar malicious sites', reach:'Average reach'}, world: {count:'World malicious sites', reach:'Average reach'} }
-	$("#qatar-ond").html(data.unsafe.qatar[z] / 1000 > 1 ? Math.round(data.unsafe.qatar[z] / 1000) + "K" : data.unsafe.qatar[z]);
-	$("#world-ond").html(data.unsafe.world[z] / 1000 > 1 ? Math.round(data.unsafe.world[z] / 1000) + "K" : data.unsafe.world[z]);
+	var texts = { qatar: {count:'Qatar malicious sites', reach:'Qatar users affected'}, world: {count:'World malicious sites', reach:'World users affected'} }
+	$("#qatar-num").html(z == 'count'? data.unsafe.qatar[z] : data.unsafe.qatar[z] + " %");
+	$("#world-num").html(z == 'count'? data.unsafe.world[z] : data.unsafe.world[z] + " %");
 	$("#qatar-txt").html(texts.qatar[z]);
 	$("#world-txt").html(texts.world[z]);
+	$("#qwnum").html( ((data.unsafe.qatar[z] - data.unsafe.world[z]) / data.unsafe.world[z] * 100).toFixed(0) + " %");
+	$("#agree").html(data.agree.toFixed(2));
 
 	var labels = [	'Virus*', 'Malware', 'Phishing', 'Scam', 'Potentially Illegal', 'Privacy Risks', 
 					'Unethical', 'Suspicious', 'Hate / Discrimination', 'Spam', 'Unwanted Programs', 

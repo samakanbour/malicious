@@ -155,7 +155,7 @@ table {
     width: 18px;
 }
 
-/*ONDOMETER*/
+/*BAR LEGEND*/
 
 .btn_icon {
     float: left;
@@ -182,15 +182,19 @@ table {
     border: 1px solid #fff;
 }
 
-.odometer {
-    color: #FF5732;
-    font-weight: 700;
-}
-
 .box.qatar {
     float:right;
 }
 
 .box.world {
     float:left;
+}
+
+.numbers {
+    font-weight: 700;
+    color: #FF5732;
+}
+
+#qwnum {
+    font-size: 30px;
 }
