@@ -123,6 +123,12 @@ $(document).ready(function() {
 		$(this).addClass("current");
 		$("section").hide();
 		$("#" + $(this)[0].title).show();
+		if ($(this)[0].title == "attacker") {
+			d3WorldMap(dataCountries(data.url), "qatar");
+			$("#visuals").css("background", "#FF5732");
+		} else {
+			$("#visuals").css("background", "#FFF");
+		}
 	});
 	$(".reach div").click(function() {
 		if ($(this).hasClass("fa-toggle-on") == true) {
@@ -133,6 +139,17 @@ $(document).ready(function() {
 			$(this).removeClass("fa-toggle-off").addClass("fa-toggle-on");
 			$("#malicious article").html('');
 			d3Bars(dataBars(data.url), "#malicious article", 'reach');
+		}
+	});
+
+	$("#attacker .box").click(function() {
+		$("#attacker .box").removeClass("selected");
+		if ($(this).hasClass("qatar") == true) {
+			d3WorldMap(dataCountries(data.url), "qatar");
+			$(this).addClass("selected");
+		} else {
+			d3WorldMap(dataCountries(data.url), "world");
+			$(this).addClass("selected");
 		}
 	});
 

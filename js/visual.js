@@ -277,6 +277,27 @@ function dataBars(data) {
 	return { bars: bars, agree:agreep, unsafe:unsafe };
 }
 
+function dataCountries(data) {
+	var countries = {qatar: {}, world:{}};
+	var n = 2;
+
+	for (c in data) {
+		for (url in data[c]) {
+			var e = data[c][url];
+			var country = country_code[e.country];
+			var type = e.wsafe > 0 ? 1 : e.vsafe > n ? 1 : 0;
+			if (country && country != 'None') {
+				if (!(country in countries[c])) {
+					countries[c][country] = {}
+					countries[c][country].count = 0
+				}
+				countries[c][country].count += type > 0 ? e.reach : 0;
+			}
+		}
+	}
+	return countries;
+}
+
 d3Matrix = function(data, name) {
 	var barWidth = 1;
 	var barHeight = 11;
@@ -364,7 +385,7 @@ d3Bars = function(data, id, z) {
 		max = data.bars[d].world[z] > max ? data.bars[d].world[z] : max;
 	}
 	var w = d3.scale.linear().domain([0, max]).range([0, 230]);
-	var svg = d3.select(id).append("svg").attr("width", 650).attr("height", 500).append("g");
+	var svg = d3.select(id).append("svg").attr("width", 650).attr("height", data.bars.length * (barHeight + 10)).append("g");
 	svg.append('defs').append('pattern').attr('id', 'colorHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
 	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#9F0251').attr('stroke-width', 2);
 	svg.append('defs').append('pattern').attr('id', 'whiteHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
@@ -389,12 +410,38 @@ d3Bars = function(data, id, z) {
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.common[z]) }).duration(1000);
 	
 	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 325 - w(d.qatar[z]) + w(d.common[z])/2 - 5 })
-	.attr("y", 14).style("text-anchor", "end").text(function(d) { return z == "count" ? d.qatar[z] : (d.qatar[z] * 100).toFixed(2) });
+	.attr("y", 15).style("text-anchor", "end").text(function(d) { return z == "count" ? d.qatar[z] : (d.qatar[z] * 100).toFixed(2) });
 	bar.append("text").attr("class", "g-title").attr("x", function(d) { return 325 + w(d.world[z]) - w(d.common[z])/2 + 5 })
-	.attr("y", 14).style("text-anchor", "start").text(function(d) { return z == "count" ? d.world[z] : (d.world[z] * 100).toFixed(2) });
+	.attr("y", 15).style("text-anchor", "start").text(function(d) { return z == "count" ? d.world[z] : (d.world[z] * 100).toFixed(2) });
 
 	bar.append("text").attr("class", function(d, i) { return i < 4 ? "g-title malicious" : "g-title"})
-	.attr("y", 14).text(function(d, i) {
+	.attr("y", 15).text(function(d, i) {
 		return labels[i];
+	});
+}
+
+d3WorldMap = function(countries, z) {
+	$("#map").html("");
+	var max = 0;
+	for (c in countries[z]) { max = countries[z][c].count > max ? countries[z][c].count : max; }
+	var m = d3.scale.quantile().domain([1, max]).range([0, 1, 2, 3]);
+	for (c in countries[z]) {
+		countries[z][c].fillKey = countries[z][c].count > 0 ? 'malicious' + m(countries[z][c].count) : 'defaultFill';
+	}
+	var map = new Datamap({
+		element: document.getElementById("map"),
+		projection: 'mercator',
+		fills: {
+			defaultFill: "#FF5732",
+			malicious0:	'rgba(255, 255, 255, .7)',
+			malicious1:	'rgba(255, 255, 255, .8)',
+			malicious2:	'rgba(255, 255, 255, .9)',
+			malicious3: 'rgba(255, 255, 255, 1)',
+		},
+		data: countries[z],
+		geographyConfig: {
+			popupOnHover: false, //disable the popup while hovering
+			highlightOnHover: false
+		}
 	});
 }

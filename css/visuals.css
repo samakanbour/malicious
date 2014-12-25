@@ -163,30 +163,31 @@ table {
     margin-bottom: 50px;
 }
 
-.btn_icon .qatar img {
-    width: 20px;
-    padding: 10px;
+.box img {
+    width: 18px;
+    padding: 6px;
 }
 
-.btn_icon span.world {
-    color: #fff;
+.box span {
+    width: 30px;
     font-size: 16px;
-    padding: 10px;
-    line-height: 40px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
 }
 
-.btn_icon .box {
-    width: 40px;
-    height: 40px;
+.box {
+    width: 30px;
+    height: 30px;
     background-color: #FF5732;
-    border: 1px solid #fff;
+    border: 1px solid #FFF;
 }
 
-.box.qatar {
+.btn_icon .box.qatar {
     float:right;
 }
 
-.box.world {
+.btn_icon .box.world {
     float:left;
 }
 
@@ -197,4 +198,22 @@ table {
 
 #qwnum {
     font-size: 30px;
+}
+
+/*MAP*/
+
+#attacker .box {
+    float: left;
+    margin: 5px;
+    -webkit-transition: border 0.3s ease-out;
+    -moz-transition: border 0.3s ease-out;
+    -o-transition: border 0.3s ease-out;
+    -ms-transition: border 0.3s ease-out;
+    transition: border 0.3s ease-out;
+    cursor: pointer;
+}
+
+#attacker .box:hover, #attacker .box.selected {
+    border: 1px solid #0fe9bd;
+
 }
