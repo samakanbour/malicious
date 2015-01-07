@@ -179,7 +179,6 @@ table {
 .box {
     width: 30px;
     height: 30px;
-    background-color: #FF5732;
     border: 1px solid #FFF;
 }
 
@@ -200,9 +199,17 @@ table {
     font-size: 30px;
 }
 
-/*MAP*/
+/*BOX*/
 
-#attacker .box {
+.btn_icon .box, #attacker .box {
+    background-color: #FF5732;
+}
+
+#search .box span, #subcategory .box span {
+    color: #0099FF;
+}
+
+#attacker .box, #search .box, #subcategory .box {
     float: left;
     margin: 5px;
     -webkit-transition: border 0.3s ease-out;
@@ -213,7 +220,32 @@ table {
     cursor: pointer;
 }
 
-#attacker .box:hover, #attacker .box.selected {
+#attacker .box:hover, #attacker .box.selected, 
+#search .box:hover , #search .box.selected,
+#subcategory .box:hover , #subcategory .box.selected {
     border: 1px solid #0fe9bd;
+}
 
+/*PIE*/
+
+#subcategory {
+    height: 500px;
+}
+
+#subcategory svg {
+    width: 100%;
+    height: 100%;
+}
+#subcategory path.slice {
+    stroke-width: 2px;
+}
+#subcategory polyline {
+    opacity: .3;
+    stroke: black;
+    stroke-width: 1px;
+    fill: none;
+}
+
+#subcategory text {
+    font-size: 13px;
 }

@@ -11,11 +11,11 @@
         document.write("<meta name='viewport' content='initial-scale=1, maximum-scale=1, width=device-width, user-scalable=no' />");
     }
     </script>
-    <meta name="description" content="Malicious Web" />
+    <meta name="description" content="Malicious" />
     <meta name="keywords" content="Thierry Sans, Sama Kanbour, web, malicious, security, safety, qatar" />
     <meta name="author" content="Thierry Sans, Sama Kanbour" />
     <meta name="publisher" content="Sama Kanbour" />
-    <title>Malicious Web</title>
+    <title>Online Attacks</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="img/logo.png" rel="shortcut icon">
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,7 @@
             <div class="line"></div>
             <ul>
                 <li class="open_story">The Story</li>
-                <li class="open_about">About</li>
+                <li class="open_about">Tools</li>
             </ul>
             <div class="line"></div>
         </div>
@@ -49,6 +49,7 @@
             <li class="fa fa-map-marker" 	title="attacker"></li>
             <li class="fa fa-list" 			title="category"></li>
             <li class="fa fa-search" 		title="search"></li>
+            <li class="fa fa-pie-chart"		title="subcategory"></li>
             <li class="fa fa-share-alt"		title="social"></li>
         </ul>
     </div>
@@ -56,7 +57,21 @@
         <p>Are people in Qatar more exposed to online attacks than the rest of the world?<br>In response to this question, we studied 2,000 most visited sites in Qatar and in the world. Using the analytical service providers Alexa Top Sites, Similar Web, Web of Trust, and Virus Total, we were able to extract, classify and study these sites.<br>Click below to view our findings expressed in a visual storytelling.</p>
         <div id="btn_home">The Story</div>
     </div>
-    <div id="about"></div>
+    <div id="about">
+    	<br>
+		<h3><a href="http://www.alexa.com/">Alexa Top Sites</a></h3>
+		<h3><a href="http://www.similarweb.com/">Similar Web</a></h3>
+		<h3><a href="https://www.virustotal.com/en/documentation/public-api/">Virus Total</a></h3>
+		<h3><a href="http://freegeoip.net/">Free Geoip</a></h3>
+		<br>
+		<h3><a href="http://builtwith.com/">Built With</a></h3>
+		<h3><a href="https://developers.google.com/safe-browsing/">Google Safe Browsing</a></h3>
+		<br>
+		<h3><a href="http://www.nltk.org/">NLTK</a></h3>
+		<h3><a href="http://www.nltk.org/howto/wordnet.html">WordNet</a></h3>
+		<h3><a href="http://pythonhosted.org/goslate/">Goslate - Google Translate</a></h3>
+		<h3><a href="http://nlp.stanford.edu/software/CRF-NER.shtml">Stanford NER</a></h3>
+    </div>
     <div id="visuals">
 		<section id="interest">
 			<h1>interest</h1>
@@ -115,7 +130,7 @@
 			</table>
 		</section>
 		<section id="malicious">
-			<h1>weapons</h1>
+			<h1>attacks</h1>
 			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a> and <a href="https://www.virustotal.com/en/documentation/public-api/">Virus Total</a>, <strong>users in Qatar are more likely to be victims of online attacks than the rest of the world.</strong> Here, we only consider websites subject to virus, malware, phishing or scam attacks. Web of Trust and Virus Total agree <span id="agree">0</span> % of the time on marking a site malicious or safe. We also take into account the percentage of users affected by malicious sites using <a href="http://www.alexa.com/">Alexa</a> reach.</p>
 			<div class="line"></div>
 			<p style="text-align:center;"><strong>Qatar is <span id="qwnum">0 %</span> more exposed to cyber attacks than the rest of the world.</strong></p>
@@ -137,11 +152,11 @@
 				</div>
 			</div>
 			<article></article>
-			<p style="font-size:12px;">*According to Virus Total where positives is greater than 2. The remaining categories are according to Web of Trust.</p>
+			<p style="font-size:12px;">*According to Virus Total where <i>positives</i> is greater than 2. The remaining categories are according to Web of Trust.</p>
 		</section>
 		<section id="attacker" style="color: #FFF;">
 			<h1>attackers</h1>
-			<p>According to <a href="http://freegeoip.net/">Freegeoip</a> and Alexa Reach, <strong>Qatar's attackers are ...</strong>.</p>
+			<p>According to <a href="http://freegeoip.net/">Freegeoip</a> and Alexa Reach, <strong>Qatar's main attackers are located in North America and Western Europe</strong>.</p>
 			<div style="margin: 0 auto; width: 84px;">
 				<div class="box qatar selected"><img src="img/qa-o.png"></div>
 				<div class="box world"><span class="fa fa-globe"></span></div>
@@ -149,9 +164,9 @@
 			<article id="map" style="height: 500px;"></article>
 		</section>
 		<section id="category">
-			<h1>methods</h1>
-			<p>Description.</p>
-			<div class="line"></div>
+			<h1>categories</h1>
+			<!-- <p>Description.</p> -->
+			<!-- <div class="line"></div> -->
 			<div class="icons right">
 				<span class="qatar"><img src="img/qa.png">QATAR</span>
 				<span class="world"><div class="fa fa-globe"></div> WORLD</span>
@@ -161,6 +176,21 @@
 		<section id="search">
 			<h1>keywords</h1>
 			<p></p>
+			<div style="margin: 0 auto; width: 84px;">
+				<div class="box qatar selected"><img src="img/qa.png"></div>
+				<div class="box world"><span class="fa fa-globe"></span></div>
+			</div>
+			<br><br><br>
+			<article></article>
+		</section>
+		<section id="subcategory">
+			<h1>sub categories</h1>
+			<p></p>
+			<div style="margin: 0 auto; width: 84px;">
+				<div class="box qatar selected"><img src="img/qa.png"></div>
+				<div class="box world"><span class="fa fa-globe"></span></div>
+			</div>
+			<br>
 		</section>
 		<section id="social">
 			<h1>social referals</h1>
@@ -168,19 +198,23 @@
 		</section>
     </div>
     <script>var rubActive = "home";</script>
-    <script src="js/lib/jquery-1.11.1.min.js"></script>
-    <script src="js/lib/jquery.easing.1.3.js"></script>
-    <script src="js/lib/d3.v3.min.js"></script>
-    <script src="js/lib/d3.tip.js"></script>
-    <script src="js/lib/sankey.js"></script>
-    <script src="js/lib/radar.js"></script>
-    <script src="js/lib/topojson.js"></script>
-	<script src="js/lib/datamaps.all.js"></script>
-    <script src="data/data.jsonp"></script>
-    <script src="data/country.code.jsonp"></script>
-	<script src="data/lat.long.jsonp"></script>
-    <script src="js/main.js"></script>
-    <script src="js/visual.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/lib/d3.tip.js"></script>
+    <script type="text/javascript" src="js/lib/sankey.js"></script>
+    <script type="text/javascript" src="js/lib/radar.js"></script>
+    <script type="text/javascript" src="js/lib/topojson.js"></script>
+	<script type="text/javascript" src="js/lib/datamaps.all.js"></script>
+	<script type="text/javascript" src="js/lib/word.cloud.js"></script>
+	<script type="text/javascript" src="js/lib/pie.js"></script>
+    <script type="text/javascript" src="data/data.jsonp"></script>
+    <script type="text/javascript" src="data/words.jsonp"></script>
+    <script type="text/javascript" src="data/country.code.jsonp"></script>
+	<script type="text/javascript" src="data/lat.long.jsonp"></script>
+	<script type="text/javascript" src="js/visual.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    
 
     <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({

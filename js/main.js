@@ -153,4 +153,26 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#search .box").click(function() {
+		$("#search .box").removeClass("selected");
+		if ($(this).hasClass("qatar") == true) {
+			dataWord(words.qatar, "#search article", colors[0]);
+			$(this).addClass("selected");
+		} else {
+			dataWord(words.world, "#search article", colors[1]);
+			$(this).addClass("selected");
+		}
+	});
+
+	$("#subcategory .box").click(function() {
+		$("#subcategory .box").removeClass("selected");
+		if ($(this).hasClass("qatar") == true) {
+			pie.change(dataPie(data.url).qatar);
+			$(this).addClass("selected");
+		} else {
+			pie.change(dataPie(data.url).world);
+			$(this).addClass("selected");
+		}
+	});
+
 });

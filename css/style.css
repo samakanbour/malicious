@@ -160,7 +160,7 @@ ul, li {
 
 #submenu ul {
     position: absolute;
-    top: 50%;
+    top: 40%;
     margin-top: -125px;
     width: 100px;
     height: 250px;
@@ -276,7 +276,7 @@ ul, li {
     left: -100%;
     width: 0;
     height: 100%;
-    background: url(../img/home.jpg);
+    background: url(../img/tools.jpg);
     background-size: cover;
     background-position: top left;
     -webkit-transition: left 0s ease-out, width 0s 0.7s ease-out;
@@ -303,17 +303,12 @@ ul, li {
     transition: left 0.7s ease-out, width 0s ease-out;
 }
 
-#about article {
-    width: 40%;
-    float: left;
-    padding: 5%;
+#about a {
+    color: #FFF;
 }
 
-#about img {
-    width: 75%;
-    display: inherit;
-    margin: 0 auto;
-    border-radius: 50%;
+#about a:hover {
+    color: #0fe9bd;
 }
 
 #about h3 {

@@ -1,9 +1,13 @@
+var pie;
 $(document).ready(function() {
 	d3Sankey(getSankeyData(data.categories), '#interest');
 	d3Spider(data.wot.reputation, "#spider1");
 	d3Spider(data.wot.safety, "#spider2");
 	d3Matrix(dataMatrix(data.url), "#category");
 	d3Bars(dataBars(data.url), "#malicious article", 'count');
+	dataWord(words.qatar, "#search article", colors[0]);
+	pie = new d3.pie("#subcategory", 700, 400);
+	pie.change(dataPie(data.url).qatar);
 });
 
 var CATEGORY_TITLES = {
@@ -178,7 +182,7 @@ function dataMatrix(data) {
 					}
 				})
 			}
-			var type = e.wsafe > 0 ? 1 : e.vsafe > 1 ? 1 : 0;
+			var type = e.wsafe > 0 ? 1 : e.vsafe > 2 ? 1 : 0;
 			result[categories.indexOf(category)].values[c].push({ url: url, type: type });
 		}
 	}
@@ -212,6 +216,37 @@ function dataMatrix(data) {
 	return clean;
 }
 
+function dataPie(data){
+	var subs = {qatar:{}, world:{}};
+	for (c in data) {
+		for (url in data[c]) {
+			var e = data[c][url];
+			var sub = e.subcategory;
+			var type = e.wsafe > 0 ? 1 : e.vsafe > 2 ? 1 : 0;
+			if (type > 0) {
+				if (!(sub in subs[c])) {
+					subs[c][sub] = 0;
+				}
+				subs[c][sub] += 1
+			}
+		}
+	}
+	var result = {qatar:[], world:[]};
+	for (c in subs) {
+		for (s in subs[c]) {
+			if (s != 'None') {
+				result[c].push({label:s.replace(/_/g, ' '), value:subs[c][s]})
+			}
+		}
+	}
+	for (c in result) {
+		result[c].sort(function(a, b) {
+			return b.value - a.value;
+		});
+	}
+	return result;
+}
+
 function dataBars(data) {
 	var barlist = [	'vt', '101', '103', '104', '105', '202', 
 					'201', '203', '204', '205', '206', '207', '102'];
@@ -236,10 +271,10 @@ function dataBars(data) {
 
 			bardict['vt'][c].count += e.vsafe > n ? 1 : 0;
 			bardict['vt'][c].reach += e.vsafe > n ? e.reach : 0;
-			for (m in e.malicious){
-				if (barlist.indexOf(e.malicious[m]) > -1) {
-					bardict[e.malicious[m]][c].count += 1;
-					bardict[e.malicious[m]][c].reach += e.reach;
+			for (m in e.status){
+				if (barlist.indexOf(e.status[m]) > -1) {
+					bardict[e.status[m]][c].count += 1;
+					bardict[e.status[m]][c].reach += e.reach;
 				}
 			}
 			
@@ -253,9 +288,9 @@ function dataBars(data) {
 				unsafe.common.reach += type > 0 ? e.reach : 0;
 
 				bardict['vt'].common.count += e.vsafe > n ? 1 : 0;
-				for (m in e.malicious){
-					if (barlist.indexOf(e.malicious[m]) > -1) {
-						bardict[e.malicious[m]].common.count += 1;
+				for (m in e.status){
+					if (barlist.indexOf(e.status[m]) > -1) {
+						bardict[e.status[m]].common.count += 1;
 					}
 				}
 				wv[0] -= e.wsafe > 0 ? 1 : 0;
@@ -443,5 +478,38 @@ d3WorldMap = function(countries, z) {
 			popupOnHover: false, //disable the popup while hovering
 			highlightOnHover: false
 		}
+	});
+}
+
+function dataWord(data, id, color){
+	var max = 0;
+	for (d in data) { max = data[d] > max ? data[d] : max; }
+	var min = max;
+	for (d in data) { min = data[d] < min ? data[d] : min; }
+	var w = d3.scale.quantize().domain([min, max/15]).range([10, 12, 14, 16, 18, 20]);
+	d3.layout.cloud().size([700, 700]).words(Object.keys(data).map(function(d) {
+		return {
+			text: d,
+			size: w(data[d]),
+			color: color,
+			rotate: ~~(Math.random() * 5) * 30 - 60,
+			cloud: id
+		};
+	})).fontSize(function(d) { 
+		return d.size; 
+	}).on("end", d3WordCloud).start();
+}
+
+d3WordCloud = function(data) {
+	$(data[0].cloud).html("");
+	d3.select(data[0].cloud).append("svg").attr("width", 700).attr("height", 700)
+	.append("g").attr("transform", "translate(350,350)").selectAll("text").data(data).enter().append("text").style("font-size", function(d) {
+		return d.size + "px";
+	}).attr("text-anchor", "middle").attr("transform", function(d) {
+		return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+	}).text(function(d) {
+		return d.text;
+	}).attr('fill', function(d){
+		return d.color;
 	});
 }
