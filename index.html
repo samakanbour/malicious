@@ -43,13 +43,13 @@
     </div>
     <div id="submenu">
         <ul>
-        	<li class="fa fa-eye current" 	title="interest"></li>
-            <li class="fa fa-thumbs-o-up" 	title="reputation"></li>
+            <li class="fa fa-thumbs-o-up current" 	title="reputation"></li>
             <li class="fa fa-bar-chart"		title="malicious"></li>
             <li class="fa fa-map-marker" 	title="attacker"></li>
+            <li class="fa fa-eye" 			title="interest"></li>
             <li class="fa fa-list" 			title="category"></li>
-            <li class="fa fa-search" 		title="search"></li>
             <li class="fa fa-pie-chart"		title="subcategory"></li>
+            <li class="fa fa-search" 		title="search"></li>
             <li class="fa fa-share-alt"		title="social"></li>
         </ul>
     </div>
@@ -70,24 +70,9 @@
 		<h3><a href="http://pythonhosted.org/goslate/">Goslate</a></h3>
 		<h3><a href="http://nlp.stanford.edu/software/CRF-NER.shtml">Stanford NER</a></h3>
 		<br>
-		<h3></h3>
+		<h3>Special thanks to Similar Web <br>for sponsoring the research.</h3>
     </div>
     <div id="visuals">
-		<section id="interest">
-			<h1>interest</h1>
-			<p>According to <a href="http://www.alexa.com/">Alexa</a>'s ranking and <a href="http://www.similarweb.com/category">SimilarWeb</a>'s categorization, <strong>Qatar's population is more interested in politics, beauty and health than the rest of the world</strong>. Alexa ranking is calculated based on the reach—number of users visiting a site—and page views—number of times a site is visited—recorded from users who have the Alexa browser extension. If a user visits the same site multiple times on the same day, these visits will be counted as one. SimilarWeb categorization uses a learning algorithm to classify websites using content tags, similarity results and a learning set of 2.5M categorized websites.</p>
-			<p class="math">$$category \ ranking = {\sum ranking \ of \ sites \over count \ of \ sites \ in \ category}$$</p>
-			<br>
-			<div class="line"></div>
-			<p><strong>How to read this graph</strong> the higher the category, the more interested is the user community in this category. 
-			<br>Qatar and World categories are linked to help you track the change in interest.</p>
-			<div class="line"></div>
-
-			<div class="icons aligned">
-				<span class="qatar"><img src="img/qa.png">QATAR</span>
-				<span class="world">WORLD <div class="fa fa-globe"></div> </span>
-			</div>
-		</section>
 		<section id="reputation">
 			<h1>reputation</h1>
 			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a>'s reputation system, <strong>websites browsed in Qatar are less trusted than those browsed in the rest of the world</strong>. Reputations are based on ratings received from users and sources on how trustworthy a website is. Reputations are further supported by a negative, questionable, neutral, or positive explanation. A negative explanation means the website is subject to cyber attacks. For our analysis, we only consider reputations and explanations when user confidence is greater or equal to 10%, as suggested by Web of Trust.</p>
@@ -98,8 +83,8 @@
 			<div class="line"></div>
 
 			<div class="icons right">
-				<span class="qatar"><img src="img/qa.png">QATAR</span><br>
-				<span class="world"> <div class="fa fa-globe"></div> WORLD</span>
+				<span class="qatar"><strong>Q</strong> QATAR</span><br>
+				<span class="world"><strong>W</strong> WORLD</span>
 			</div>		
 			<div id="spider1"></div>
 			<div id="spider2"></div>
@@ -138,15 +123,15 @@
 			<span class="reach"><div class="fa fa-toggle-off"></div> REACH</span>
 			<div class="clear"></div>
 			<div class="btn_icon">
-				<div class="box qatar"><img src="img/qa-o.png"></div>
-				<div style="float:right; text-align:right; margin-right:5px; margin-top:-5px;">
+				<div class="box qatar">Q</div>
+				<div style="float:right; text-align:right; margin-right:5px;">
 					<div class="text" id="qatar-txt">Qatar malicious sites</div>
 					<div class="numbers" id="qatar-num"></div>
 				</div>
 			</div>
 			<div class="btn_icon">
-				<div class="box world"><span class="fa fa-globe"></span></div>
-				<div style="float:left; text-align:left; margin-left:5px; margin-top:-5px;">
+				<div class="box world">W</div>
+				<div style="float:left; text-align:left; margin-left:5px;">
 					<div class="text" id="world-txt">World malicious sites</div>
 					<div class="numbers" id="world-num"></div>	
 				</div>
@@ -157,28 +142,41 @@
 		<section id="attacker" style="color: #FFF;">
 			<h1>attackers</h1>
 			<p>According to <a href="http://freegeoip.net/">Freegeoip</a> and Alexa Reach, <strong>Qatar's main attackers are located in North America and Western Europe</strong>.</p>
-			<div style="margin: 0 auto; width: 84px;">
-				<div class="box qatar selected"><img src="img/qa-o.png"></div>
-				<div class="box world"><span class="fa fa-globe"></span></div>
+			<div class="aligned" style="width: 98px;">
+				<div class="box qatar selected">Q</div>
+				<div class="box world">W</div>
 			</div>
 			<article id="map" style="height: 500px;"></article>
 		</section>
+		<section id="interest">
+			<h1>interest</h1>
+			<p>According to <a href="http://www.alexa.com/">Alexa</a>'s ranking and <a href="http://www.similarweb.com/category">SimilarWeb</a>'s categorization, <strong>Qatar's population is more interested in politics, beauty and health than the rest of the world</strong>. Alexa ranking is calculated based on the reach—number of users visiting a site—and page views—number of times a site is visited—recorded from users who have the Alexa browser extension. If a user visits the same site multiple times on the same day, these visits will be counted as one. SimilarWeb categorization uses a learning algorithm to classify websites using content tags, similarity results and a learning set of 2.5M categorized websites.</p>
+			<p class="math">$$category \ ranking = {\sum ranking \ of \ sites \over count \ of \ sites \ in \ category}$$</p>
+			<br>
+			<div class="line"></div>
+			<p><strong>How to read this graph</strong> the higher the category, the more interested is the user community in this category. 
+			<br>Qatar and World categories are linked to help you track the change in interest.</p>
+			<div class="line"></div>
+
+			<div class="icons opposite">
+				<span class="qatar"><strong>Q</strong> QATAR</span>
+				<span class="world">WORLD <strong>W</strong></span>
+			</div>
+		</section>
 		<section id="category">
 			<h1>categories</h1>
-			<!-- <p>Description.</p> -->
-			<!-- <div class="line"></div> -->
 			<div class="icons right">
-				<span class="qatar"><img src="img/qa.png">QATAR</span>
-				<span class="world"><div class="fa fa-globe"></div> WORLD</span>
+				<span class="qatar"><strong>Q</strong> QATAR</span>
+				<span class="world"><strong>W</strong> WORLD</span>
 				<span class="malicious"><div class="fa fa-bug"></div> MALICIOUS</span>
 			</div>
 		</section>
 		<section id="search">
 			<h1>keywords</h1>
 			<p></p>
-			<div style="margin: 0 auto; width: 84px;">
-				<div class="box qatar selected"><img src="img/qa.png"></div>
-				<div class="box world"><span class="fa fa-globe"></span></div>
+			<div class="aligned">
+				<div class="box qatar selected">Q</div>
+				<div class="box world">W</div>
 			</div>
 			<br><br><br>
 			<article></article>
@@ -186,15 +184,19 @@
 		<section id="subcategory">
 			<h1>sub categories</h1>
 			<p></p>
-			<div style="margin: 0 auto; width: 84px;">
-				<div class="box qatar selected"><img src="img/qa.png"></div>
-				<div class="box world"><span class="fa fa-globe"></span></div>
+			<div class="aligned">
+				<div class="box qatar selected">Q</div>
+				<div class="box world">W</div>
 			</div>
 			<br>
 		</section>
 		<section id="social">
 			<h1>social referals</h1>
 			<p></p>
+			<div class="aligned">
+				<div class="box qatar selected">Q</div>
+				<div class="box world">W</div>
+			</div>
 		</section>
     </div>
     <script>var rubActive = "home";</script>

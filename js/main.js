@@ -21,7 +21,7 @@ $(document).keydown(function(e){
 
 $(document).ready(function() {
 	$("section").hide();
-	$("#interest").show();
+	$("#reputation").show();
 	var isMoving = false;
 	gestionResize();
 	$(window).resize(function() {

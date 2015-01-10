@@ -12,7 +12,7 @@ section h1 {
     margin-bottom: 20px;
 }
 
-.icons.aligned .world {
+.icons.opposite .world {
 	float: right;
 }
 
@@ -151,44 +151,7 @@ table {
     /*stroke: #FF5732;*/
 }
 
-.qatar img {
-    width: 18px;
-}
-
 /*BAR LEGEND*/
-
-.btn_icon {
-    float: left;
-    width: 50%;
-    margin-bottom: 50px;
-}
-
-.box img {
-    width: 18px;
-    padding: 6px;
-}
-
-.box span {
-    width: 30px;
-    font-size: 16px;
-    text-align: center;
-    line-height: 30px;
-    color: #fff;
-}
-
-.box {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #FFF;
-}
-
-.btn_icon .box.qatar {
-    float:right;
-}
-
-.btn_icon .box.world {
-    float:left;
-}
 
 .numbers {
     font-weight: 700;
@@ -201,15 +164,46 @@ table {
 
 /*BOX*/
 
+.btn_icon {
+    float: left;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+.btn_icon .box.qatar {
+    float:right;
+}
+
+.btn_icon .box.world {
+    float:left;
+}
+
+.box {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #FFF;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 50%;
+    line-height: 35px;
+}
+
 .btn_icon .box, #attacker .box {
     background-color: #FF5732;
+    color: #FFF;
 }
 
-#search .box span, #subcategory .box span {
-    color: #0099FF;
+#attacker .box {
+    border-color: #FF5732;
 }
 
-#attacker .box, #search .box, #subcategory .box {
+.aligned {
+    margin: 0 auto; 
+    width: 94px;
+}
+
+.aligned .box {
     float: left;
     margin: 5px;
     -webkit-transition: border 0.3s ease-out;
@@ -220,10 +214,12 @@ table {
     cursor: pointer;
 }
 
-#attacker .box:hover, #attacker .box.selected, 
-#search .box:hover , #search .box.selected,
-#subcategory .box:hover , #subcategory .box.selected {
-    border: 1px solid #0fe9bd;
+.aligned .box:hover, .aligned .box.selected {
+    border-color: #0fe9bd;
+}
+
+#attacker .aligned .box:hover, #attacker .aligned .box.selected {
+    color: #0fe9bd;
 }
 
 /*PIE*/
@@ -236,9 +232,11 @@ table {
     width: 100%;
     height: 100%;
 }
+
 #subcategory path.slice {
     stroke-width: 2px;
 }
+
 #subcategory polyline {
     opacity: .3;
     stroke: black;
