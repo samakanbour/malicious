@@ -157,8 +157,7 @@ d3Spider = function (data, id) {
 	var options = {
 		w: 450,
 		h: 450,
-		maxValue: .8,
-		levels: 5,
+		levels: 6,
 		ExtraWidthX: 300,
 		color: function(e){ return colors[e] }
 	}

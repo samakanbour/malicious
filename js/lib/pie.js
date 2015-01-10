@@ -13,15 +13,13 @@ d3.pie = function(id, width, height) {
 	var key = function(d) {
 		return d.data.label;
 	};
-	var color = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
 
 	this.change = function(data) {
+		var op = d3.scale.linear().domain([0, 15]).range([0, 1]);
+
 		/* ------- PIE SLICES -------*/
 		var slice = svg.select(".slices").selectAll("path.slice").data(pie(data), key);
-		slice.enter().insert("path").style("fill", function(d) {
-			return color(d.data.label);
-		}).attr("class", "slice");
+		slice.enter().insert("path").style("fill", "#FF5732").attr("class", "slice");
 		slice.transition().duration(800).attrTween("d", function(d) {
 			this._current = this._current || d;
 			var interpolate = d3.interpolate(this._current, d);
@@ -29,13 +27,16 @@ d3.pie = function(id, width, height) {
 			return function(t) {
 				return arc(interpolate(t));
 			};
-		})
+		}).styleTween("fill-opacity", function(d) {
+			return function(t) {
+				return op(d.data.value);
+			};
+		});
 		slice.exit().remove();
 
 		/* ------- TEXT LABELS -------*/
 		var text = svg.select(".labels").selectAll("text").data(pie(data), key);
-		text.enter().append("text").attr("dy", ".35em")
-		.text(function(d) {
+		text.enter().append("text").attr("dy", ".35em").text(function(d) {
 			return d.data.label;
 		});
 
@@ -60,8 +61,13 @@ d3.pie = function(id, width, height) {
 				var d2 = interpolate(t);
 				return midAngle(d2) < Math.PI ? "start" : "end";
 			};
+		}).styleTween("fill-opacity", function(d) {
+			return function(t) {
+				return d.data.value < 2 ? 0 : 1;
+			}
 		});
 		text.exit().remove();
+
 		/* ------- SLICE TO TEXT POLYLINES -------*/
 		var polyline = svg.select(".lines").selectAll("polyline").data(pie(data), key);
 		polyline.enter().append("polyline");
@@ -75,6 +81,10 @@ d3.pie = function(id, width, height) {
 				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
 				return [arc.centroid(d2), outerArc.centroid(d2), pos];
 			};
+		}).styleTween("opacity", function(d) {
+			return function(t) {
+				return d.data.value < 2 ? 0 : .3;
+			}
 		});
 		polyline.exit().remove();
 	}

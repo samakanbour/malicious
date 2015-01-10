@@ -43,6 +43,7 @@ section h1 {
 }
 
 /*SANKEY*/
+
 .node rect {
     fill-opacity: .9;
     stroke-opacity: 0;
@@ -63,6 +64,7 @@ section h1 {
 }
 
 /*SPIDER*/
+
 .axis text {
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -78,6 +80,7 @@ table {
 }
 
 /*MATRIX*/
+
 .g-pick rect {
     stroke: transparent;
     cursor: pointer;
@@ -113,7 +116,6 @@ table {
     z-index: 999999999;
 }
 
-/* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
     box-sizing: border-box;
     display: inline;
@@ -126,12 +128,13 @@ table {
     text-align: center;
 }
 
-/* Style northward tooltips differently */
 .d3-tip.n:after {
     margin: -1px 0 0 0;
     top: 100%;
     left: 0;
 }
+
+/*LEGEND*/
 
 .qatar {
     fill: #9F0251;
@@ -151,8 +154,6 @@ table {
     /*stroke: #FF5732;*/
 }
 
-/*BAR LEGEND*/
-
 .numbers {
     font-weight: 700;
     color: #FF5732;
@@ -162,8 +163,6 @@ table {
     font-size: 30px;
 }
 
-/*BOX*/
-
 .btn_icon {
     float: left;
     width: 50%;
@@ -172,10 +171,14 @@ table {
 
 .btn_icon .box.qatar {
     float:right;
+    color: #FFF;
+    background-color: #FF5732;
 }
 
 .btn_icon .box.world {
     float:left;
+    color: #FFF;
+    background-color: #FF5732;
 }
 
 .box {
@@ -187,15 +190,6 @@ table {
     font-weight: 700;
     border-radius: 50%;
     line-height: 35px;
-}
-
-.btn_icon .box, #attacker .box {
-    background-color: #FF5732;
-    color: #FFF;
-}
-
-#attacker .box {
-    border-color: #FF5732;
 }
 
 .aligned {
@@ -212,13 +206,14 @@ table {
     -ms-transition: border 0.3s ease-out;
     transition: border 0.3s ease-out;
     cursor: pointer;
+    color: #eee;
+}
+
+#attacker .box {
+    border: 0px solid red;
 }
 
 .aligned .box:hover, .aligned .box.selected {
-    border-color: #0fe9bd;
-}
-
-#attacker .aligned .box:hover, #attacker .aligned .box.selected {
     color: #0fe9bd;
 }
 
@@ -238,7 +233,7 @@ table {
 }
 
 #subcategory polyline {
-    opacity: .3;
+    /*opacity: .3;*/
     stroke: black;
     stroke-width: 1px;
     fill: none;
