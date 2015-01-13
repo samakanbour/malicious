@@ -217,6 +217,7 @@ function dataMatrix(data) {
 
 function dataPie(data){
 	var subs = {qatar:{}, world:{}};
+	var total = {qatar:0, world:0}
 	for (c in data) {
 		for (url in data[c]) {
 			var e = data[c][url];
@@ -226,15 +227,16 @@ function dataPie(data){
 				if (!(sub in subs[c])) {
 					subs[c][sub] = 0;
 				}
-				subs[c][sub] += 1
+				subs[c][sub] += e.reach
+				total[c] += e.reach
 			}
 		}
 	}
 	var result = {qatar:[], world:[]};
 	for (c in subs) {
 		for (s in subs[c]) {
-			if (s != 'None') {
-				result[c].push({label:s.replace(/_/g, ' '), value:subs[c][s]})
+			if (s != 'None' & s != 'Ad_Network') {
+				result[c].push({label:s.replace(/_/g, ' '), value:subs[c][s]/total[c] * 100})
 			}
 		}
 	}

@@ -15,7 +15,7 @@ d3.pie = function(id, width, height) {
 	};
 
 	this.change = function(data) {
-		var op = d3.scale.linear().domain([0, 15]).range([0, 1]);
+		var op = d3.scale.linear().domain([0, 10]).range([0.1, 1]);
 
 		/* ------- PIE SLICES -------*/
 		var slice = svg.select(".slices").selectAll("path.slice").data(pie(data), key);
@@ -63,7 +63,7 @@ d3.pie = function(id, width, height) {
 			};
 		}).styleTween("fill-opacity", function(d) {
 			return function(t) {
-				return d.data.value < 2 ? 0 : 1;
+				return d.data.value < .8 ? 0 : 1;
 			}
 		});
 		text.exit().remove();
@@ -83,7 +83,7 @@ d3.pie = function(id, width, height) {
 			};
 		}).styleTween("opacity", function(d) {
 			return function(t) {
-				return d.data.value < 2 ? 0 : .3;
+				return d.data.value < .8 ? 0 : .3;
 			}
 		});
 		polyline.exit().remove();
