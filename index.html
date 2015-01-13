@@ -70,16 +70,16 @@
 		<h3><a href="http://pythonhosted.org/goslate/">Goslate</a></h3>
 		<h3><a href="http://nlp.stanford.edu/software/CRF-NER.shtml">Stanford NER</a></h3>
 		<br>
-		<h3>Special thanks to Similar Web <br>for sponsoring the research.</h3>
+		<h3>We acknowledge the generous support of Similar Web<br>who contributed to sponsoring this research.</h3>
     </div>
     <div id="visuals">
 		<section id="reputation">
 			<h1>reputation</h1>
-			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a>'s reputation system, <strong>websites browsed in Qatar are less trusted than those browsed in the rest of the world</strong>. Reputations are based on ratings received from users and sources on how trustworthy a website is. Reputations are further supported by a negative, questionable, neutral, or positive explanation. A negative explanation means the website is subject to cyber attacks. For our analysis, we only consider reputations and explanations when user confidence is greater or equal to 10%, as suggested by Web of Trust.</p>
-			<p class="math">$$ { poor \ reputation \ \% = {count \ of \ poor \ sites \qquad \over total \ classified \ sites\qquad} } \qquad \qquad for \ confidence \ge 10% $$</p>
+			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a>'s reputation system, <strong>websites browsed in Qatar are less trusted than those browsed in the rest of the world</strong>. Reputations are based on ratings received from users and third-party sources on how trustworthy a website is. Reputations are further supported by a negative, questionable, neutral or positive explanation. A negative explanation means the website is subject to cyber attacks. For our analysis, we only consider reputations and explanations when user confidence is greater or equal to 10% as suggested by Web of Trust. </p>
+			<p class="math">$$ { poor \ reputation \ \% = {count \ of \ poor \ sites \over total \ classified \ sites} } \qquad \qquad for \ confidence \ge 10% $$</p>
 			<br>
 			<div class="line"></div>
-			<p><strong>How to read these charts</strong> the first chart compares reputations in Qatar and the world, the second provides an explanation to the suggested reputations.</p>
+			<p><strong>How to read these charts</strong> the first chart compares reputations in Qatar and the world, the second provides an explanation to the suggested reputations. The charts do not include excellent reputation and positive explanation.</p>
 			<div class="line"></div>
 
 			<div class="icons right">
@@ -96,7 +96,7 @@
 					</tr>
 					<tr>
 						<td> Negative </td>
-						<td> Malware or viruses, Phishing, Scam</td>
+						<td> Malware, Viruses, Phishing, Scam</td>
 					</tr>
 					<tr>
 						<td> Questionable </td>
@@ -111,10 +111,12 @@
 		</section>
 		<section id="malicious">
 			<h1>attacks</h1>
-			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a> and <a href="https://www.virustotal.com/en/documentation/public-api/">Virus Total</a>, <strong>users in Qatar are more likely to be victims of online attacks than the rest of the world.</strong> Here, we only consider websites subject to virus, malware, phishing or scam attacks. Web of Trust and Virus Total agree <span id="agree">0</span> % of the time on marking a site malicious or safe. We also take into account the percentage of users affected by malicious sites using <a href="http://www.alexa.com/">Alexa</a> reach.</p>
+			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a> and <a href="https://www.virustotal.com/en/documentation/public-api/">Virus Total</a>, <strong>users in Qatar are more likely to become victims of online attacks than the rest of the world.</strong> Here, we only consider websites subject to malware, virus, phishing or scam attacks. Web of Trust and Virus Total agree <span id="agree">0</span> % of the time on marking a site malicious or safe. We also take into account the percentage of users affected by malicious sites using <a href="http://www.alexa.com/">Alexa</a> reach—number of users visiting a site.</p>
+			<p class="math">$$ { affected \ users \ \% = { \sum reach \ of \ negative \ sites \qquad \over total \ reach \qquad } } $$</p>
+			<!-- <br> -->
 			<div class="line"></div>
 			<p style="text-align:center;"><strong>Qatar is <span id="qwnum">0 %</span> more exposed to cyber attacks than the rest of the world.</strong></p>
-			<div class="line"></div>
+			<!-- <div class="line"></div> -->
 			<span class="reach"><div class="fa fa-toggle-off"></div> REACH</span>
 			<div class="clear"></div>
 			<div class="btn_icon">
@@ -136,17 +138,21 @@
 		</section>
 		<section id="attacker" style="color: #FFF;">
 			<h1>attackers</h1>
-			<p>According to <a href="http://freegeoip.net/">Freegeoip</a> and Alexa Reach, <strong>Qatar's main attackers are located in North America and Western Europe</strong>.</p>
+			<p>According to <a href="http://freegeoip.net/">Freegeoip</a> and Alexa reach, Qatar's main attackers are located in North America and Western Europe.
+			<br><strong>How to read this map</strong> malicious websites hosted in the USA affect 5.7% of Qatar's online audience.</p>
+			<br>
 			<div class="aligned" style="width: 98px;">
 				<div class="box qatar selected">Q</div>
 				<div class="box world">W</div>
 			</div>
-			<article id="map" style="height: 500px;"></article>
+			<br>
+			<article id="map" style="height: 350px; width: 500px; float: left;"></article>
+			<article id="map-bars" style="height: 350px; width: 150px; float: left;"></article>
 		</section>
 		<section id="interest">
 			<h1>interest</h1>
-			<p>According to <a href="http://www.alexa.com/">Alexa</a>'s ranking and <a href="http://www.similarweb.com/category">SimilarWeb</a>'s categorization, <strong>Qatar's population is more interested in politics, beauty and health than the rest of the world</strong>. Alexa ranking is calculated based on the reach—number of users visiting a site—and page views—number of times a site is visited—recorded from users who have the Alexa browser extension. If a user visits the same site multiple times on the same day, these visits will be counted as one. SimilarWeb categorization uses a learning algorithm to classify websites using content tags, similarity results and a learning set of 2.5M categorized websites.</p>
-			<p class="math">$$category \ ranking = {\sum ranking \ of \ sites \over count \ of \ sites \ in \ category}$$</p>
+			<p>According to <a href="http://www.alexa.com/">Alexa</a>'s ranking and <a href="http://www.similarweb.com/category">SimilarWeb</a>'s categorization, <strong>Qatar's population is more interested in media, news, beauty, health and finance than the rest of the world</strong>. Alexa ranking is calculated based on the reach—number of users visiting a site—and page views—number of times a site is visited—recorded from users who have the Alexa browser extension. If a user visits the same site multiple times on the same day, these visits will be counted as one. SimilarWeb categorization uses a learning algorithm to classify websites using content tags, similarity results and a learning set of 2.5M categorized websites.</p>
+			<p class="math">$$category \ ranking = {\sum ranking \ of \ sites \qquad \over count \ of \ sites \ in \ category \qquad}$$</p>
 			<br>
 			<div class="line"></div>
 			<p><strong>How to read this graph</strong> the higher the category, the more interested is the user community in this category. 

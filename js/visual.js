@@ -313,6 +313,7 @@ function dataBars(data) {
 
 function dataCountries(data) {
 	var countries = {qatar: {}, world:{}};
+	var total = {qatar:0, world:0}
 	var n = 2;
 
 	for (c in data) {
@@ -326,7 +327,13 @@ function dataCountries(data) {
 					countries[c][country].count = 0
 				}
 				countries[c][country].count += type > 0 ? e.reach : 0;
+				total[c] += e.reach;
 			}
+		}
+	}
+	for (c in countries) {
+		for (country in countries[c]) {
+			countries[c][country].count = (countries[c][country].count / total[c] * 100).toFixed(5);
 		}
 	}
 	return countries;
@@ -419,27 +426,34 @@ d3Bars = function(data, id, z) {
 		max = data.bars[d].world[z] > max ? data.bars[d].world[z] : max;
 	}
 	var w = d3.scale.linear().domain([0, max]).range([0, 230]);
-	var svg = d3.select(id).append("svg").attr("width", 650).attr("height", data.bars.length * (barHeight + 10)).append("g");
+	var svg = d3.select(id).append("svg").attr("width", 650).attr("height", data.bars.length * (barHeight + 15)).append("g");
 	svg.append('defs').append('pattern').attr('id', 'colorHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
 	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#9F0251').attr('stroke-width', 2);
 	svg.append('defs').append('pattern').attr('id', 'whiteHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
 	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#fff').attr('stroke-width', 2);
 
+	var line = svg.append("line").attr("x1", 325).attr("x2", 325).attr("y1", 0).attr("y2", (data.bars.length - 1) * (barHeight + 15)).attr('stroke-width', 2);
+	if (z == 'count') {
+		line.attr('stroke', '#555');
+	} else {
+		line.attr('stroke', '#fff');
+	}
+
 	var bar = svg.selectAll("g").data(data.bars).enter().append("g").attr("transform", function(d, i) {
-		return "translate(0," + (i * (barHeight + 10)) + ")";
+		return "translate(0," + (i * (barHeight + 15)) + ")";
 	});
 
-	bar.append("rect").attr("height", barHeight).attr("fill", "#9F0251")
+	bar.append("rect").attr("height", barHeight).attr("fill", "#9F0251").attr('stroke', '#fff').attr('stroke-width', 2)
 	.attr("x", function(d) { return (-325 - w(d.common[z])/2) })
 	.attr("y", -barHeight)
 	.attr("transform", "rotate(180)")
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.qatar[z]) }).duration(1000);
 	
-	bar.append("rect").attr("height", barHeight).attr("fill", "#0099FF")
+	bar.append("rect").attr("height", barHeight).attr("fill", "#0099FF").attr('stroke', '#fff').attr('stroke-width', 2)
 	.attr("x", function(d) { return 325 - w(d.common[z])/2 })
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.world[z]) }).duration(1000);
 	
-	bar.append("rect").attr("height", barHeight).attr('fill', 'url(#colorHatch)')
+	bar.append("rect").attr("height", barHeight).attr('fill', 'url(#colorHatch)').attr('stroke', '#fff').attr('stroke-width', 2)
 	.attr("x", function(d) { return 325 - w(d.common[z])/2 })
 	.attr("width", 0).transition().attr("width", function(d) { return w(d.common[z]) }).duration(1000);
 	
@@ -456,11 +470,16 @@ d3Bars = function(data, id, z) {
 
 d3WorldMap = function(countries, z) {
 	$("#map").html("");
+	$("#map-bars").html("");
 	var max = 0;
+	var bars = [];
 	for (c in countries[z]) { max = countries[z][c].count > max ? countries[z][c].count : max; }
 	var m = d3.scale.quantile().domain([1, max]).range([0, 1, 2, 3]);
 	for (c in countries[z]) {
 		countries[z][c].fillKey = countries[z][c].count > 0 ? 'malicious' + m(countries[z][c].count) : 'defaultFill';
+		if (countries[z][c].count > 0) {
+			bars.push({name: c, reach: countries[z][c].count});
+		}
 	}
 	var map = new Datamap({
 		element: document.getElementById("map"),
@@ -478,6 +497,29 @@ d3WorldMap = function(countries, z) {
 			highlightOnHover: false
 		}
 	});
+
+	bars.sort(function(a, b) {
+		return b.reach - a.reach;
+	});
+	var b = d3.scale.linear().domain([0, d3.max(bars, function(d){ return d.reach })]).range([5, 100]);
+	var bar = d3.select("#map-bars").append("svg").attr("width", 150).attr("height", 500)
+	.append("g").selectAll("g").data(bars).enter().append("g")
+	.attr("transform", function(d, i) {
+		return "translate(10," + (i * 20 + 30) + ")";
+	});
+	bar.append("text").attr("class", "g-title").text(function(d) {
+		return d.name;
+	}).style("fill", "#fff");
+	bar.append("line").attr("x1", 24).attr("y1", -1).attr("y2", -1).style("stroke", "#fff").attr('stroke-width', 1)
+	.attr("x2", 24).transition().attr("x2", function(d) {
+		return (24 + b(d.reach));
+	}).duration(1000);
+	bar.append("text").attr("class", "g-title").text(function(d) {
+		return (+d.reach).toFixed(2);
+	}).style("fill", "#fff").attr("x", function(d) {
+		return (26 + b(d.reach));
+	});
+
 }
 
 function dataWord(data, id, color){
