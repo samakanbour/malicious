@@ -1,4 +1,5 @@
 var pie;
+var bubble;
 $(document).ready(function() {
 	d3Sankey(getSankeyData(data.categories), '#interest');
 	d3Spider(data.wot.reputation, "#spider1");
@@ -8,6 +9,14 @@ $(document).ready(function() {
 	dataWord(words.qatar, "#search article", colors[0]);
 	pie = new d3.pie("#subcategory", 700, 400);
 	pie.change(dataPie(data.url).qatar);
+	data.sref.sort(function(a, b){
+		return a.qatar - b.qatar;
+	})
+	bubble = new d3.bubble(data.sref, {
+		div: '#social',
+		width: 750,
+		height: 400
+	});
 });
 
 var CATEGORY_TITLES = {

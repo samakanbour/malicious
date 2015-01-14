@@ -123,13 +123,23 @@ $(document).ready(function() {
 		$(this).addClass("current");
 		$("section").hide();
 		$("#" + $(this)[0].title).show();
+		
 		if ($(this)[0].title == "attacker") {
 			d3WorldMap(dataCountries(data.url), "qatar");
 			$("#visuals").css("background", "#FF5732");
 		} else {
 			$("#visuals").css("background", "#FFF");
 		}
+
+		if ($(this)[0].title == "social") {
+			$("#social .box").removeClass("selected");
+			$("#social .box.qatar").addClass("selected");
+			bubble.show('qatar');
+		} else {
+			bubble.hide();
+		}
 	});
+
 	$(".reach div").click(function() {
 		if ($(this).hasClass("fa-toggle-on") == true) {
 			$(this).removeClass("fa-toggle-on").addClass("fa-toggle-off");
@@ -146,33 +156,41 @@ $(document).ready(function() {
 		$("#attacker .box").removeClass("selected");
 		if ($(this).hasClass("qatar") == true) {
 			d3WorldMap(dataCountries(data.url), "qatar");
-			$(this).addClass("selected");
 		} else {
 			d3WorldMap(dataCountries(data.url), "world");
-			$(this).addClass("selected");
 		}
+		$(this).addClass("selected");
 	});
 
 	$("#search .box").click(function() {
 		$("#search .box").removeClass("selected");
 		if ($(this).hasClass("qatar") == true) {
 			dataWord(words.qatar, "#search article", colors[0]);
-			$(this).addClass("selected");
 		} else {
 			dataWord(words.world, "#search article", colors[1]);
-			$(this).addClass("selected");
 		}
+		$(this).addClass("selected");
 	});
 
 	$("#subcategory .box").click(function() {
 		$("#subcategory .box").removeClass("selected");
 		if ($(this).hasClass("qatar") == true) {
 			pie.change(dataPie(data.url).qatar);
-			$(this).addClass("selected");
 		} else {
 			pie.change(dataPie(data.url).world);
-			$(this).addClass("selected");
 		}
+		$(this).addClass("selected");
+	});
+
+	$("#social .box").click(function() {
+		$("#social .box").removeClass("selected");
+		if ($(this).hasClass("qatar") == true) {
+			bubble.show('qatar');
+		} else {
+			bubble.show('world');
+		}
+		$(this).addClass("selected");
+		
 	});
 
 });
