@@ -19,7 +19,9 @@ d3.pie = function(id, width, height) {
 
 		/* ------- PIE SLICES -------*/
 		var slice = svg.select(".slices").selectAll("path.slice").data(pie(data), key);
-		slice.enter().insert("path").style("fill", "#FF5732").attr("class", "slice");
+		slice.enter().insert("path")
+		.style("fill", "#FF5732").attr('stroke', '#fff').attr('stroke-width', 1)
+		.attr("class", "slice");
 		slice.transition().duration(800).attrTween("d", function(d) {
 			this._current = this._current || d;
 			var interpolate = d3.interpolate(this._current, d);
@@ -63,7 +65,7 @@ d3.pie = function(id, width, height) {
 			};
 		}).styleTween("fill-opacity", function(d) {
 			return function(t) {
-				return d.data.value < .8 ? 0 : 1;
+				return d.data.value < .7 ? 0 : 1;
 			}
 		});
 		text.exit().remove();
@@ -83,7 +85,7 @@ d3.pie = function(id, width, height) {
 			};
 		}).styleTween("opacity", function(d) {
 			return function(t) {
-				return d.data.value < .8 ? 0 : .3;
+				return d.data.value < .7 ? 0 : .3;
 			}
 		});
 		polyline.exit().remove();

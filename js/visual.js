@@ -443,13 +443,6 @@ d3Bars = function(data, id, z) {
 	svg.append('defs').append('pattern').attr('id', 'whiteHatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 4).attr('height', 4)
 	.append('path').attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2').attr('stroke', '#fff').attr('stroke-width', 2);
 
-	var line = svg.append("line").attr("x1", 325).attr("x2", 325).attr("y1", 0).attr("y2", (data.bars.length - 1) * (barHeight + 15)).attr('stroke-width', 2);
-	if (z == 'count') {
-		line.attr('stroke', '#555');
-	} else {
-		line.attr('stroke', '#fff');
-	}
-
 	var bar = svg.selectAll("g").data(data.bars).enter().append("g").attr("transform", function(d, i) {
 		return "translate(0," + (i * (barHeight + 15)) + ")";
 	});
