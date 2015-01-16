@@ -15,7 +15,7 @@
     <meta name="keywords" content="Thierry Sans, Sama Kanbour, web, malicious, security, safety, qatar" />
     <meta name="author" content="Thierry Sans, Sama Kanbour" />
     <meta name="publisher" content="Sama Kanbour" />
-    <title>Online Attacks</title>
+    <title>Online Behavior</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="img/logo.png" rel="shortcut icon">
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -75,11 +75,11 @@
     <div id="visuals">
 		<section id="reputation">
 			<h1>reputation</h1>
-			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a>'s reputation system, <strong>websites browsed in Qatar are less trusted than those browsed in the rest of the world</strong>. Reputations are based on ratings received from users and third-party sources on how trustworthy a website is. Reputations are further supported by a negative, questionable, neutral or positive explanation. A negative explanation means the website is subject to cyber attacks. For our analysis, we only consider reputations and explanations when user confidence is greater or equal to 10% as suggested by Web of Trust. </p>
+			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a>'s reputation system, <strong>websites browsed in Qatar are less trusted than those browsed in the rest of the world</strong>. Reputations are based on ratings received from users and third-party sources on how trustworthy a website is. Reputations are further supported by a negative, questionable, neutral or positive explanation. One site can have multiple explanations. A negative explanation means the website is subject to cyber attacks. For our analysis, we only consider reputations and explanations when user confidence is greater or equal to 10% as suggested by Web of Trust. </p>
 			<p class="math">$$ { poor \ reputation \ \% = {count \ of \ poor \ sites \over total \ classified \ sites} } \qquad \qquad for \ confidence \ge 10% $$</p>
 			<br>
 			<div class="line"></div>
-			<p><strong>How to read these charts</strong> the first chart compares reputations in Qatar and the world, the second provides an explanation to the suggested reputations. The charts do not include excellent reputation and positive explanation.</p>
+			<p><strong>How to read these charts</strong> the first chart compares reputations in Qatar and the world, the second provides an explanation to the suggested reputations. The charts do not include excellent reputation (<span id="qrep"></span>% for Qatar, <span id="wrep"></span>% for the world) and positive explanation (<span id="qexp"></span>% for Qatar, <span id="wexp"></span>% for the world).</p>
 			<div class="line"></div>
 
 			<div class="icons right">
@@ -87,7 +87,7 @@
 				<span class="world"><strong>W</strong> WORLD</span>
 			</div>		
 			<div id="spider1"></div>
-			<div id="spider2"></div>
+			
 			<table>
 				<tbody>
 					<tr>
@@ -108,10 +108,11 @@
 					</tr>
 				</tbody>
 			</table>
+			<div id="spider2"></div>
 		</section>
 		<section id="malicious">
 			<h1>attacks</h1>
-			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a> and <a href="https://www.virustotal.com/en/documentation/public-api/">Virus Total</a>, <strong>users in Qatar are more likely to become victims of online attacks than the rest of the world.</strong> Here, we only consider websites subject to malware, virus, phishing or scam attacks. Web of Trust and Virus Total agree <span id="agree">0</span> % of the time on marking a site malicious or safe. We also take into account the percentage of users affected by malicious sites using <a href="http://www.alexa.com/">Alexa</a> reach—number of users visiting a site.</p>
+			<p>According to <a href="https://www.mywot.com/wiki/API">Web of Trust</a> and <a href="https://www.virustotal.com/en/documentation/public-api/">Virus Total</a>, <strong>users in Qatar browse more malicious sites, therefore are more likely to become victims of online attacks than the rest of the world.</strong> Summary numbers only consider websites subject to malware, virus, phishing or scam attacks. Web of Trust and Virus Total agree <span id="agree">0</span>% of the time on marking a site malicious or safe. We also consider the percentage of users affected by malicious sites using <a href="http://www.alexa.com/">Alexa</a> reach, aka traffic.</p>
 			<p class="math">$$ { affected \ users \ \% = { \sum user \ traffic \ of \ malicious \ sites \qquad\qquad \over total \ user \ traffic \qquad\qquad } } $$</p>
 			<!-- <br> -->
 			<div class="line"></div>
@@ -167,9 +168,13 @@
 		<section id="category">
 			<h1>categories</h1>
 			<div class="icons right">
-				<span class="qatar"><strong>Q</strong> QATAR</span>
-				<span class="world"><strong>W</strong> WORLD</span>
-				<span class="malicious"><div class="fa fa-bug"></div> MALICIOUS</span>
+				<span class="qatar"><strong>|</strong> QATAR</span>
+				<span class="world"><strong>|</strong> WORLD</span>
+				<span class="malicious"><strong>|</strong> MALICIOUS</span>
+			</div>
+			<div class="clear"></div>
+			<div class="icons right">
+				<span class="malicious"><strong> — </strong> Qatar users browsing malicious sites</span>
 			</div>
 		</section>
 		<section id="subcategory">
@@ -191,7 +196,11 @@
 				<div class="box world">W</div>
 			</div>
 			<br><br><br>
+			<div class="number">1</div>
+			<div class="number">2</div>
 			<article></article>
+			<div class="number">3</div>
+			
 		</section>
 		<section id="social">
 			<h1>social referals</h1>

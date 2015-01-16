@@ -17,6 +17,10 @@ $(document).ready(function() {
 		width: 750,
 		height: 400
 	});
+	$("#qrep").html(Math.round(data.wot.hidden.excellent[0] * 100));
+	$("#wrep").html(Math.round(data.wot.hidden.excellent[1] * 100));
+	$("#qexp").html(Math.round(data.wot.hidden.positive[0] * 100));
+	$("#wexp").html(Math.round(data.wot.hidden.positive[1] * 100));
 });
 
 var CATEGORY_TITLES = {
@@ -187,11 +191,14 @@ function dataMatrix(data) {
 					values: {
 						world: [],
 						qatar: []
-					}
+					},
+					traffic: 0
 				})
 			}
 			var type = e.wsafe > 0 ? 1 : e.vsafe > 2 ? 1 : 0;
+			var traffic = c == 'qatar' && type > 0 ? e.reach : 0;
 			result[categories.indexOf(category)].values[c].push({ url: url, type: type });
+			result[categories.indexOf(category)].traffic += traffic;
 		}
 	}
 	var clean = []
@@ -244,7 +251,10 @@ function dataPie(data){
 	var result = {qatar:[], world:[]};
 	for (c in subs) {
 		for (s in subs[c]) {
-			if (s != 'None' & s != 'Ad_Network') {
+			if (s != 'None') {
+				if (s == 'Ad_Network') {
+					subs[c][s] = subs[c][s] / 2.5;
+				}
 				result[c].push({label:s.replace(/_/g, ' '), value:subs[c][s]/total[c] * 100})
 			}
 		}
@@ -353,7 +363,7 @@ function dataCountries(data) {
 d3Matrix = function(data, name) {
 	var barWidth = 1;
 	var barHeight = 11;
-	var y = d3.scale.linear().domain([0, data.length]).range([0, data.length * ((barHeight + 1) * 2 + 10)]);
+	var y = d3.scale.linear().domain([0, data.length]).range([0, data.length * ((barHeight + 1) * 2 + 12)]);
 	var x = d3.scale.linear().domain([0, 1]).range([0, barWidth + 1]);
 	var padding = 80;
 	var width = 0;
@@ -363,7 +373,7 @@ d3Matrix = function(data, name) {
 		width = ww > width ? ww : width;
 		width = qw > width ? qw : width;
 	}
-	var svg = d3.select(name).append("svg").attr("width", width + 50).attr("height", data.length * ((barHeight + 1) * 2 + 10) + 20).append("g");
+	var svg = d3.select(name).append("svg").attr("width", width + 50).attr("height", data.length * ((barHeight + 1) * 2 + 12) + 20).append("g");
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return d.url;
 	});
@@ -416,6 +426,13 @@ d3Matrix = function(data, name) {
 		return len;
 		// return len < 800 ? len : 790;
 	}).attr("y", 32);
+
+	var t = d3.scale.linear().domain([0, d3.max(data, function(d){ return d.traffic })]).range([0, 400]);
+	category.append("line").attr("x1", padding).attr("x2", padding).attr("y1", 10).attr("y2", 10)
+	.style("stroke", colors[2]).attr('stroke-width', 2)
+	.transition().attr("x2", function(d) {
+		return (padding + t(d.traffic));
+	}).duration(1000);
 }
 
 d3Bars = function(data, id, z) {
@@ -424,8 +441,8 @@ d3Bars = function(data, id, z) {
 	$("#world-num").html(z == 'count'? data.unsafe.world[z] : data.unsafe.world[z] + " %");
 	$("#qatar-txt").html(texts.qatar[z]);
 	$("#world-txt").html(texts.world[z]);
-	$("#qwnum").html( ((data.unsafe.qatar[z] - data.unsafe.world[z]) / data.unsafe.world[z] * 100).toFixed(0) + " %");
-	$("#agree").html(data.agree.toFixed(2));
+	$("#qwnum").html(((data.unsafe.qatar[z] - data.unsafe.world[z]) / data.unsafe.world[z] * 100).toFixed(0) + " %");
+	$("#agree").html(Math.round(data.agree));
 
 	var labels = [	'Virus*', 'Malware', 'Phishing', 'Scam', 'Potentially Illegal', 'Privacy Risks', 
 					'Unethical', 'Suspicious', 'Hate / Discrimination', 'Spam', 'Unwanted Programs', 

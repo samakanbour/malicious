@@ -15,7 +15,7 @@ d3.pie = function(id, width, height) {
 	};
 
 	this.change = function(data) {
-		var op = d3.scale.linear().domain([0, 10]).range([0.1, 1]);
+		var op = d3.scale.linear().domain([0, d3.max(data, function(d){ return d.value })]).range([0, 1]);
 
 		/* ------- PIE SLICES -------*/
 		var slice = svg.select(".slices").selectAll("path.slice").data(pie(data), key);
@@ -65,7 +65,7 @@ d3.pie = function(id, width, height) {
 			};
 		}).styleTween("fill-opacity", function(d) {
 			return function(t) {
-				return d.data.value < .7 ? 0 : 1;
+				return op(d.data.value) < .06 ? 0 : 1;
 			}
 		});
 		text.exit().remove();
@@ -85,7 +85,7 @@ d3.pie = function(id, width, height) {
 			};
 		}).styleTween("opacity", function(d) {
 			return function(t) {
-				return d.data.value < .7 ? 0 : .3;
+				return op(d.data.value) < .06 ? 0 : .3;
 			}
 		});
 		polyline.exit().remove();
