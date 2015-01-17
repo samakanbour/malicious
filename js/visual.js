@@ -443,7 +443,7 @@ d3Bars = function(data, id, z) {
 	$("#world-num").html(z == 'count'? data.unsafe.world[z] : data.unsafe.world[z] + " %");
 	$("#qatar-txt").html(texts.qatar[z]);
 	$("#world-txt").html(texts.world[z]);
-	$("#qwnum").html(((data.unsafe.qatar[z] - data.unsafe.world[z]) / data.unsafe.world[z] * 100).toFixed(0) + " %");
+	$("#qwnum").html(((data.unsafe.qatar[z] - data.unsafe.world[z]) / data.unsafe.world[z] * 100).toFixed(0) + "%");
 	$("#agree").html(Math.round(data.agree));
 
 	var labels = [	'Virus*', 'Malware', 'Phishing', 'Scam', 'Potentially Illegal', 'Privacy Risks', 
