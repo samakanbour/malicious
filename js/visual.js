@@ -6,7 +6,9 @@ $(document).ready(function() {
 	d3Spider(data.wot.safety, "#spider2");
 	d3Matrix(dataMatrix(data.url), "#category");
 	d3Bars(dataBars(data.url), "#malicious article", 'count');
-	dataWord(words.qatar, "#search article", colors[0]);
+	dataWord(words.first.qatar, 	"#search article#first", colors[0]);
+	dataWord(words.second.qatar, 	"#search article#second", colors[0]);
+	dataWord(words.third.qatar, 	"#search article#third", colors[0]);
 	pie = new d3.pie("#subcategory", 700, 400);
 	pie.change(dataPie(data.url).qatar);
 	data.sref.sort(function(a, b){

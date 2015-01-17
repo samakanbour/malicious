@@ -165,9 +165,13 @@ $(document).ready(function() {
 	$("#search .box").click(function() {
 		$("#search .box").removeClass("selected");
 		if ($(this).hasClass("qatar") == true) {
-			dataWord(words.qatar, "#search article", colors[0]);
+			dataWord(words.first.qatar, 	"#search article#first", colors[0]);
+			dataWord(words.second.qatar, 	"#search article#second", colors[0]);
+			dataWord(words.third.qatar, 	"#search article#third", colors[0]);
 		} else {
-			dataWord(words.world, "#search article", colors[1]);
+			dataWord(words.first.world, 	"#search article#first", colors[1]);
+			dataWord(words.second.world, 	"#search article#second", colors[1]);
+			dataWord(words.third.world, 	"#search article#third", colors[1]);
 		}
 		$(this).addClass("selected");
 	});
