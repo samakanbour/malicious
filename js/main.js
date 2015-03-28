@@ -20,6 +20,9 @@ $(document).keydown(function(e){
 });
 
 $(document).ready(function() {
+	$("#content p").fadeIn(4000);
+	$("#content #btn_home").fadeIn("slow");
+
 	$("section").hide();
 	$("#reputation").show();
 	var isMoving = false;

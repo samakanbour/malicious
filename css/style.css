@@ -25,6 +25,10 @@ a, li {
     clear: both;
 }
 
+#content p, #content #btn_home {
+    display: none;
+}
+
 /*************************************** MENU ********************************/
 
 #menu {
